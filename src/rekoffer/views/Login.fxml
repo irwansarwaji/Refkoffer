@@ -12,10 +12,10 @@
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1110.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rekoffer.controllers.LoginController">
     <children>
         <Button fx:id="button" layoutX="484.0" layoutY="325.0" onAction="#handleButtonAction" prefWidth="100.0" text="Login" textAlignment="CENTER" />
-        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <TextField layoutX="459.0" layoutY="248.0" promptText="Email">
+      <TextField fx:id="user_email" layoutX="459.0" layoutY="248.0" promptText="Email">
       </TextField>
-      <PasswordField layoutX="459.0" layoutY="288.0" promptText="Password">
+      <PasswordField fx:id="user_password" layoutX="459.0" layoutY="288.0" promptText="Password">
       </PasswordField>
+      <Label fx:id="error_message" layoutX="458.0" layoutY="222.0" text="Please enter your credentials" />
     </children>
 </AnchorPane>
