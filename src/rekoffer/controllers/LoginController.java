@@ -5,6 +5,7 @@
  */
 package rekoffer.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,57 +14,72 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import rekoffer.services.DatabaseFunctions;
+import static rekoffer.services.Authenticate.*;
+import rekoffer.views.ViewSwitcher;
 
 /**
  *
  * @author Damon
  */
 public class LoginController implements Initializable {
-    
-    @FXML
-    private Label label;
-    
-    @FXML
-    private void handleButtonAction(ActionEvent event) throws SQLException{
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-        ResultSet result = null;
 
-        
-        try 
-        {
-            result = DatabaseFunctions.getUser();
-            if(!result.isBeforeFirst())
-            {
-                System.out.println("Kinda empty");
-            }
-            else
-            { 
-                while(result.next())
-                {
-                    System.out.println(result.getString(1));
-                    System.out.println(result.getString(2));
-                    System.out.println(result.getString(3));
-                }
-            }
-        } 
-        catch (SQLException e) 
-        {
-            System.out.println(e);
-        }
-        finally
-        {
-            DatabaseFunctions.disconnect();
-        }
-        
-    }
+    @FXML
+    public AnchorPane AnchorPane;
+    public Label error_message;
+    public TextField user_email;
+    public PasswordField user_password;
     
+
+    @FXML
+    private void handleButtonAction(ActionEvent event) throws SQLException, IOException {
+        ResultSet result = null;
+        ViewSwitcher switcher = new ViewSwitcher();
+       
+        if (!user_email.getText().equals("") && !user_password.getText().equals("")) {
+            String mEmail = user_email.getText();
+            String mPassword = user_password.getText();
+            try {
+                result = DatabaseFunctions.getUserByEmail(mEmail);
+                if (!result.isBeforeFirst()) {
+                     error_message.setText("Oops, something went wrong. Try again please");
+                } else {
+                    result.first();
+                    if(authenticateUser(mPassword,result.getString("password")))
+                    {
+                        System.out.println("Correct password");
+                        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                        switcher.switchView("employee/Dashboard.fxml", stage);
+
+                    }
+                    else
+                    {
+                        error_message.setText("Oops, something went wrong. Try again please");
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            } finally {
+                DatabaseFunctions.disconnect();
+            }
+        }
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+        
+    }
+
 }

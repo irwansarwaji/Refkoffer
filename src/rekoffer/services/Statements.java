@@ -10,5 +10,6 @@ package rekoffer.services;
  * @author Damon
  */
 public class Statements {
-    public static String getUsers = "SELECT * from users WHERE id = ?;";
+    public static String getUser = "SELECT * from users WHERE id = ?;";
+    public static String getUserByEmail = "SELECT * from users WHERE email = ?;";
 }

@@ -35,11 +35,23 @@ public class DatabaseFunctions {
         preparedStatement.close();
     }
     
-    public static ResultSet getUser() throws SQLException
+    public static ResultSet getUser(String userId) throws SQLException
     {
         connect();
-        preparedStatement = con.prepareStatement(getUsers);
-        preparedStatement.setString(1, "1");
+        preparedStatement = con.prepareStatement(getUser);
+        preparedStatement.setString(1, userId);
+        preparedStatement.setMaxRows(1);
+        res = preparedStatement.executeQuery();
+
+     
+        return res;
+    }
+    public static ResultSet getUserByEmail(String userEmail) throws SQLException
+    {
+        connect();
+        preparedStatement = con.prepareStatement(getUserByEmail);
+        preparedStatement.setString(1, userEmail);
+        preparedStatement.setMaxRows(1);
         res = preparedStatement.executeQuery();
 
      
