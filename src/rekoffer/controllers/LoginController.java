@@ -60,7 +60,7 @@ public class LoginController implements Initializable {
                     {
                         System.out.println("Correct password");
                         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                        switcher.switchView("employee/Dashboard.fxml", stage);
+                        switcher.switchView("manager/Dashboard.fxml", stage);
 
                     }
                     else
