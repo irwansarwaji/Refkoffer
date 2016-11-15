@@ -40,7 +40,6 @@ public class LoginController implements Initializable {
     public Label error_message;
     public TextField user_email;
     public PasswordField user_password;
-    
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException, IOException {
@@ -60,17 +59,14 @@ public class LoginController implements Initializable {
                 } else {
                     result.first();
                     //Check if user password is correct
-                    if(authenticateUser(mPassword,result.getString("password")))
-                    {
+                    if (authenticateUser(mPassword, result.getString("password"))) {
                         System.out.println("Correct password");
                         //Get our stage
-                        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         //Send user to another view
                         switcher.switchView("manager/Dashboard.fxml", stage);
 
-                    }
-                    else
-                    {
+                    } else {
                         //Password is incorrect
                         error_message.setText("Oops, something went wrong. Try again please");
                     }
@@ -87,9 +83,7 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
     }
-    
-    public static void 
 
 }
