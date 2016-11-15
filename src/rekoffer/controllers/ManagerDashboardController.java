@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -19,14 +20,22 @@ import javafx.fxml.Initializable;
  * @author Damon
  */
 public class ManagerDashboardController implements Initializable {
-
+    
+    @FXML
+    public Label onlineUsers;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        for (int i = 0; i < 10000; i++) {
+            test = i;
+        }
+        
     }    
+    int test = 24;
+
     
     @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException, IOException {
@@ -35,6 +44,7 @@ public class ManagerDashboardController implements Initializable {
     @FXML
     private void handleButtonAction2(ActionEvent event) throws SQLException, IOException {
         System.out.println("Harambae");
+        onlineUsers.setText("" + test);
         }
 
     }
