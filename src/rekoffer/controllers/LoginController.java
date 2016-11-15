@@ -45,32 +45,40 @@ public class LoginController implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException, IOException {
         ResultSet result = null;
+        //Instatiate a new ViewSwitcher
         ViewSwitcher switcher = new ViewSwitcher();
-       
+        //Check if user input is empty
         if (!user_email.getText().equals("") && !user_password.getText().equals("")) {
             String mEmail = user_email.getText();
             String mPassword = user_password.getText();
             try {
+                //Get the user from the database
                 result = DatabaseFunctions.getUserByEmail(mEmail);
                 if (!result.isBeforeFirst()) {
-                     error_message.setText("Oops, something went wrong. Try again please");
+                    //No user exists with the email from user input
+                    error_message.setText("Oops, something went wrong. Try again please");
                 } else {
                     result.first();
+                    //Check if user password is correct
                     if(authenticateUser(mPassword,result.getString("password")))
                     {
                         System.out.println("Correct password");
+                        //Get our stage
                         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                        //Send user to another view
                         switcher.switchView("manager/Dashboard.fxml", stage);
 
                     }
                     else
                     {
+                        //Password is incorrect
                         error_message.setText("Oops, something went wrong. Try again please");
                     }
                 }
             } catch (SQLException e) {
                 System.out.println(e);
             } finally {
+                //When login attempt is finished. Close the connection to the database
                 DatabaseFunctions.disconnect();
             }
         }
@@ -81,5 +89,7 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
     }
+    
+    public static void 
 
 }
