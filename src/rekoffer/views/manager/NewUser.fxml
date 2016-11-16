@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1100.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="rekoffer.views.manager.NewUserController">
+   <children>
+      <Text layoutX="505.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Creation" underline="true" />
+      <TextField layoutX="456.0" layoutY="130.0" promptText="Email Address" />
+      <Text layoutX="292.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insert new email address" />
+      <Button layoutX="517.0" layoutY="226.0" mnemonicParsing="false" text="Save" />
+   </children>
+</AnchorPane>

@@ -15,7 +15,7 @@ public class Rekoffer extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("views/manager/Dashboard.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("views/Login.fxml"));
         
         Scene scene = new Scene(root);
         

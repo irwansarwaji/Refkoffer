@@ -12,7 +12,10 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import rekoffer.views.ViewSwitcher;
 
 /**
  * FXML Controller class
@@ -20,7 +23,7 @@ import javafx.scene.control.Label;
  * @author Jacco
  */
 public class ManagerDashboardController implements Initializable {
-
+ViewSwitcher switcher = new ViewSwitcher();
     @FXML
     public Label onlineUsers;
 
@@ -35,7 +38,8 @@ public class ManagerDashboardController implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException, IOException {
-        System.out.println("Hello World!");
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        switcher.switchView("manager/NewUser.fxml", stage);
     }
 
     @FXML
