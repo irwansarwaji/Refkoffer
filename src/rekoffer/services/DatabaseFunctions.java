@@ -57,4 +57,33 @@ public class DatabaseFunctions {
      
         return res;
     }
+    
+    //data base for missing baggage
+    public static ResultSet getBaggageByLabel(String label) throws SQLException
+    {
+        connect();
+        preparedStatement = con.prepareStatement(getBaggageByLabel);
+        preparedStatement.setString(1, label);
+        res = preparedStatement.executeQuery();
+
+        return res;
+    }
+     public static ResultSet getBaggageByName(String name) throws SQLException
+    {
+        connect();
+        preparedStatement = con.prepareStatement(getBaggageByName);
+        preparedStatement.setString(1, name);
+        res = preparedStatement.executeQuery();
+
+        return res;
+    }
+      public static ResultSet getBaggageByAddress(String adress) throws SQLException
+    {
+        connect();
+        preparedStatement = con.prepareStatement(getBaggageByAddress);
+        preparedStatement.setString(1, adress);
+        res = preparedStatement.executeQuery();
+
+        return res;
+    }
 }

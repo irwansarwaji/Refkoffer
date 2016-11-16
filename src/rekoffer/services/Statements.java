@@ -12,4 +12,7 @@ package rekoffer.services;
 public class Statements {
     public static String getUser = "SELECT * from users WHERE id = ?;";
     public static String getUserByEmail = "SELECT * from users WHERE email = ?;";
+    public static String getBaggageByLabel = "SELECT * from baggage WHERE label = ?;";
+    public static String getBaggageByName = "SELECT * from baggage WHERE name = ?;";
+    public static String getBaggageByAddress = "SELECT * from baggage WHERE address = ?;";
 }
