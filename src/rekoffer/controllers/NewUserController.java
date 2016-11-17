@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -27,16 +28,32 @@ public class NewUserController implements Initializable {
 
     public TextField emailAddress;
     public PasswordField password;
+    public PasswordField repeatPassword;
+    public Label wrongPassword;
 
     /**
-     * Initializes the controller class.
+     * initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
     }
-        @FXML
-        private void saveButton(ActionEvent event) throws SQLException, IOException {
-        DatabaseFunctions.createNewUser(emailAddress.getText(), password.getText());
+
+    @FXML
+    private void saveButton(ActionEvent event) throws SQLException, IOException {
+        if (password.getText() == null || password.getText().trim().isEmpty() || repeatPassword.getText() == null || repeatPassword.getText().trim().isEmpty()) {
+            //one of the password fields are empty
+            wrongPassword.setText("Password is empty!");
+        } else if (emailAddress.getText() == null || emailAddress.getText().trim().isEmpty()) {
+            wrongPassword.setText("Emailaddress is empty!");
+        } else if (password.getText().equals(repeatPassword.getText())) {
+            //passwords match. Enter info in database
+            DatabaseFunctions.createNewUser(emailAddress.getText(), password.getText(), repeatPassword.getText());
+            wrongPassword.setText("New user saved!");
+        } else {
+            //passwords dont match
+            wrongPassword.setText("Passwords don't match. Please try again.");
+        }
+
     }
 }
