@@ -46,6 +46,12 @@ public class DatabaseFunctions {
      
         return res;
     }
+    /**
+     * 
+     * @param userEmail - email van de gebruiker
+     * @return gebruiker die de userEmail heeft
+     * @throws SQLException 
+     */
     public static ResultSet getUserByEmail(String userEmail) throws SQLException
     {
         connect();
@@ -56,5 +62,19 @@ public class DatabaseFunctions {
 
      
         return res;
+    }
+    
+    public static void createNewUser(String userEmail, String newPassword) throws SQLException
+    {
+        
+        String coolioPassword = Authenticate.createPassword(newPassword);
+        
+        connect();
+        preparedStatement = con.prepareStatement(setUser);
+        preparedStatement.setString(1, userEmail);
+        preparedStatement.setString(2, coolioPassword);
+        preparedStatement.executeUpdate();
+        
+        
     }
 }
