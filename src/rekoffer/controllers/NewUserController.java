@@ -18,6 +18,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import rekoffer.services.DatabaseFunctions;
+import rekoffer.views.ViewSwitcher;
+import rekoffer.services.DatabaseFunctions;
 
 /**
  * FXML Controller class
@@ -26,6 +28,7 @@ import rekoffer.services.DatabaseFunctions;
  */
 public class NewUserController implements Initializable {
 
+    ViewSwitcher switcher = new ViewSwitcher();
     public TextField emailAddress;
     public PasswordField password;
     public PasswordField repeatPassword;
@@ -39,6 +42,7 @@ public class NewUserController implements Initializable {
 
     }
 
+    //Savebutton action voor het opslaan van de ingevoerde informatie
     @FXML
     private void saveButton(ActionEvent event) throws SQLException, IOException {
         if (password.getText() == null || password.getText().trim().isEmpty() || repeatPassword.getText() == null || repeatPassword.getText().trim().isEmpty()) {
@@ -55,5 +59,17 @@ public class NewUserController implements Initializable {
             wrongPassword.setText("Passwords don't match. Please try again.");
         }
 
+    }
+
+    @FXML
+    private void backButton(ActionEvent event) throws SQLException, IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        switcher.switchView("manager/Dashboard.fxml", stage);
+    }
+    @FXML
+    private void logoutButton(ActionEvent event) throws SQLException, IOException {
+        DatabaseFunctions.disconnect();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        switcher.switchView("Login.fxml", stage);
     }
 }

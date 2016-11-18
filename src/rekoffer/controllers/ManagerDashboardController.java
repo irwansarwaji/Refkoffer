@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import rekoffer.services.DatabaseFunctions;
 import rekoffer.views.ViewSwitcher;
 
 /**
@@ -46,6 +47,12 @@ ViewSwitcher switcher = new ViewSwitcher();
     private void handleButtonAction2(ActionEvent event) throws SQLException, IOException {
         System.out.println("Harambae");
         onlineUsers.setText("" + test);
+    }
+    @FXML
+    private void logoutButton(ActionEvent event) throws SQLException, IOException {
+        DatabaseFunctions.disconnect();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        switcher.switchView("Login.fxml", stage);
     }
 
 }

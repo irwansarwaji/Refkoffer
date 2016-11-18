@@ -17,5 +17,6 @@
       <Button layoutX="186.0" layoutY="207.0" mnemonicParsing="false" onAction="#handleButtonAction2" text="Harambe" />
       <Text layoutX="727.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aantal Users Online:" />
       <Label fx:id="onlineUsers" layoutX="860.0" layoutY="25.0" text="Label" />
+      <Button layoutX="1018.0" layoutY="10.0" mnemonicParsing="false" onAction="#logoutButton" text="Logout" />
    </children>
 </AnchorPane>

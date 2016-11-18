@@ -32,6 +32,7 @@ public class DatabaseFunctions {
         con.close();
         res.close();
         preparedStatement.close();
+        System.out.println("Database disconnected");
     }
 
     /**
