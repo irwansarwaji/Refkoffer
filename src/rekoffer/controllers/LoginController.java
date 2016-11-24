@@ -25,8 +25,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import rekoffer.models.User;
 import rekoffer.services.DatabaseFunctions;
 import static rekoffer.services.Authenticate.*;
+import rekoffer.services.Session;
 import rekoffer.views.ViewSwitcher;
 
 /**
@@ -35,6 +37,8 @@ import rekoffer.views.ViewSwitcher;
  */
 public class LoginController implements Initializable {
 
+    public User loginUser;
+
     @FXML
     public AnchorPane AnchorPane;
     public Label error_message;
@@ -42,43 +46,63 @@ public class LoginController implements Initializable {
     public PasswordField user_password;
 
     @FXML
-    private void handleButtonAction(ActionEvent event) throws SQLException, IOException {
+    private void handleButtonAction(ActionEvent event) throws IOException, SQLException {
+        String mEmail = user_email.getText();
+        String mPassword = user_password.getText();
+
+        if (checkInputAndAuthenticate(mEmail, mPassword)) {
+
+            //Start user session
+            Session.setSessionUser(loginUser);
+
+            //Get the stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            //Send user to another view
+            ViewSwitcher switcher = new ViewSwitcher();
+            switcher.switchView("manager/Dashboard.fxml", stage);
+
+        }
+    }
+
+    private boolean checkInputAndAuthenticate(String mEmail, String mPassword) throws SQLException {
         ResultSet result = null;
-        //Instatiate a new ViewSwitcher
-        ViewSwitcher switcher = new ViewSwitcher();
+
         //Check if user input is empty
         if (!user_email.getText().equals("") && !user_password.getText().equals("")) {
-            String mEmail = user_email.getText();
-            String mPassword = user_password.getText();
+
             try {
                 //Get the user from the database
                 result = DatabaseFunctions.getUserByEmail(mEmail);
                 if (!result.isBeforeFirst()) {
                     //No user exists with the email from user input
-                    error_message.setText("Oops, something went wrong. Try again please");
+                    return false;
                 } else {
                     result.first();
                     //Check if user password is correct
                     if (authenticateUser(mPassword, result.getString("password"))) {
-                        System.out.println("Correct password");
-                        //Get our stage
-                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        //Send user to another view
-                        switcher.switchView("manager/Dashboard.fxml", stage);
-
+                        loginUser = new User(result.getInt("id"), 
+                                            result.getString("email"), 
+                                            result.getString("first_name"), 
+                                            result.getString("last_name"), 
+                                            result.getString("phone"), 
+                                            result.getInt("type"));
+                        return true;
                     } else {
                         //Password is incorrect
-                        error_message.setText("Oops, something went wrong. Try again please");
+                        return false;
                     }
                 }
             } catch (SQLException e) {
                 System.out.println(e);
+                return false;
             } finally {
                 //When login attempt is finished. Close the connection to the database
                 DatabaseFunctions.disconnect();
+                System.out.println("Disconnect");
             }
         }
-
+        return false;
     }
 
     @Override

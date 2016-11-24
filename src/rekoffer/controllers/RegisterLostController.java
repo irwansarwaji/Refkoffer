@@ -8,21 +8,20 @@ package rekoffer.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
-import rekoffer.services.Session;
 
 /**
  * FXML Controller class
  *
- * @author Damon
+ * @author damon
  */
-public class ManagerDashboardController implements Initializable {
+public class RegisterLostController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        // TODO
     }    
     
 }
