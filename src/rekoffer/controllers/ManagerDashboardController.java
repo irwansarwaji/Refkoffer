@@ -22,7 +22,7 @@ public class ManagerDashboardController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        //todo load name into username label from session
     }    
     
 }
