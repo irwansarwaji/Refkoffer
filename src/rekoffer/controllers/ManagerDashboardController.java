@@ -35,7 +35,7 @@ ViewSwitcher switcher = new ViewSwitcher();
     public void initialize(URL url, ResourceBundle rb) {
 
     }
-    int test = 24;
+
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException, IOException {
@@ -43,11 +43,6 @@ ViewSwitcher switcher = new ViewSwitcher();
         switcher.switchView("manager/NewUser.fxml", stage);
     }
 
-    @FXML
-    private void handleButtonAction2(ActionEvent event) throws SQLException, IOException {
-        System.out.println("Harambae");
-        onlineUsers.setText("" + test);
-    }
     @FXML
     private void logoutButton(ActionEvent event) throws SQLException, IOException {
         DatabaseFunctions.disconnect();

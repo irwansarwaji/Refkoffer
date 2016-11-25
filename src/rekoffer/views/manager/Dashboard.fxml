@@ -13,10 +13,7 @@
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rekoffer.controllers.ManagerDashboardController">
    <children>
       <Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hallo manager dashboard" />
-      <Button layoutX="186.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Create new user" />
-      <Button layoutX="186.0" layoutY="207.0" mnemonicParsing="false" onAction="#handleButtonAction2" text="Harambe" />
-      <Text layoutX="727.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aantal Users Online:" />
-      <Label fx:id="onlineUsers" layoutX="860.0" layoutY="25.0" text="Label" />
+      <Button layoutX="207.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Create new user" />
       <Button layoutX="1018.0" layoutY="10.0" mnemonicParsing="false" onAction="#logoutButton" text="Logout" />
    </children>
 </AnchorPane>
