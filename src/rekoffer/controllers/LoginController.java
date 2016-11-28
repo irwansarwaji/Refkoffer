@@ -50,6 +50,7 @@ public class LoginController implements Initializable {
         String mEmail = user_email.getText();
         String mPassword = user_password.getText();
 
+        //Authenticate user
         if (checkInputAndAuthenticate(mEmail, mPassword)) {
 
             //Start user session
@@ -70,7 +71,6 @@ public class LoginController implements Initializable {
 
         //Check if user input is empty
         if (!user_email.getText().equals("") && !user_password.getText().equals("")) {
-
             try {
                 //Get the user from the database
                 result = DatabaseFunctions.getUserByEmail(mEmail);
@@ -81,6 +81,8 @@ public class LoginController implements Initializable {
                     result.first();
                     //Check if user password is correct
                     if (authenticateUser(mPassword, result.getString("password"))) {
+                        
+                        //The User that is accessable by all methods of this class is set
                         loginUser = new User(result.getInt("id"), 
                                             result.getString("email"), 
                                             result.getString("first_name"), 
