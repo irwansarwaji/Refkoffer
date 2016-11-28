@@ -172,4 +172,22 @@ public class DatabaseFunctions {
         preparedStatement.setString(2, cryptedPassword);
         preparedStatement.executeUpdate();
     }
+    
+    
+    //needs editing. Want to get an INT from this
+    public static ResultSet getID(String email) throws SQLException{
+        preparedStatement = con.prepareStatement(getID);
+        preparedStatement.setString(1, email);
+        res  = preparedStatement.executeQuery();
+        
+        return res;
+    }
+    
+    
+    
+    public static void setNewPassword(String newPassword, String userEmail) throws SQLException{
+        String cryptedPassword = Authenticate.createPassword(newPassword);
+        preparedStatement = con.prepareStatement(setPassword);
+        preparedStatement.setString(1, cryptedPassword);
+    }
 }
