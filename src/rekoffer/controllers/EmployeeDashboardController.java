@@ -38,6 +38,6 @@ public class EmployeeDashboardController implements Initializable {
     private void handleButtonAction(ActionEvent event) throws SQLException, IOException {
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        switcher.switchView("employee/registreerKoffer.fxml", stage);
+        switcher.switchView("employee/RegisterLost.fxml", stage);
     }
 }

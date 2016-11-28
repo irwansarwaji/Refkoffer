@@ -61,7 +61,7 @@ public class LoginController implements Initializable {
 
             //Send user to another view
             ViewSwitcher switcher = new ViewSwitcher();
-            switcher.switchView("manager/Dashboard.fxml", stage);
+            switcher.switchView("employee/Dashboard.fxml", stage);
 
         }
     }
@@ -89,9 +89,12 @@ public class LoginController implements Initializable {
                                             result.getString("last_name"), 
                                             result.getString("phone"), 
                                             result.getInt("type"));
+                        
+                        return true;
 
                     } else {
                         //Password is incorrect
+                        System.out.println("Password incorrect");
                         return false;
                     }
                 }
@@ -101,7 +104,6 @@ public class LoginController implements Initializable {
             } finally {
                 //When login attempt is finished. Close the connection to the database
                 DatabaseFunctions.disconnect();
-                System.out.println("Disconnect");
             }
         }
         return false;

@@ -11,10 +11,10 @@ package config;
  */
 public class database {
     
-    public final static String URL = "jdbc:mysql://localhost/rekoffer";
+    public final static String URL = "jdbc:mysql://mysql6.mijnhostingpartner.nl:9133";
     public final static String DRIVER = "com.mysql.jdbc.Driver";
-    public final static String DB_USERNAME = "root";
-    public final static String DB_PASSWORD = "";
+    public final static String DB_USERNAME = "Bakker12team5";
+    public final static String DB_PASSWORD = "rekoffer5";
     
 
 }
