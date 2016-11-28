@@ -75,19 +75,28 @@ public class DatabaseFunctions {
         return res;
     }
 
-    public static ResultSet getBaggageByName(String name) throws SQLException {
+    public static ResultSet getBaggageByFirstname(String firstname) throws SQLException {
         connect();
-        preparedStatement = con.prepareStatement(getBaggageByName);
-        preparedStatement.setString(1, name);
+        preparedStatement = con.prepareStatement(getBaggageByFirstname);
+        preparedStatement.setString(1, firstname);
+        res = preparedStatement.executeQuery();
+
+        return res;
+    }
+    
+    public static ResultSet getBaggageByLastname(String lastname) throws SQLException {
+        connect();
+        preparedStatement = con.prepareStatement(getBaggageByLastname);
+        preparedStatement.setString(1, lastname);
         res = preparedStatement.executeQuery();
 
         return res;
     }
 
-    public static ResultSet getBaggageByAddress(String adress) throws SQLException {
+    public static ResultSet getBaggageByAddress(String address) throws SQLException {
         connect();
         preparedStatement = con.prepareStatement(getBaggageByAddress);
-        preparedStatement.setString(1, adress);
+        preparedStatement.setString(1, address);
         res = preparedStatement.executeQuery();
 
         return res;

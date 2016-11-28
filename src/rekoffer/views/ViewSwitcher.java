@@ -22,7 +22,7 @@ public class ViewSwitcher {
         Parent root = FXMLLoader.load(getClass().getResource(viewName));  
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show();
+        stage.show(); 
     }
     
 }

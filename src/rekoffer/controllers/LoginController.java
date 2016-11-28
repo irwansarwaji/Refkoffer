@@ -89,7 +89,7 @@ public class LoginController implements Initializable {
                                             result.getString("last_name"), 
                                             result.getString("phone"), 
                                             result.getInt("type"));
-                        return true;
+
                     } else {
                         //Password is incorrect
                         return false;

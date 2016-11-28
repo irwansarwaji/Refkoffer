@@ -14,7 +14,8 @@ public class Statements {
     public static String getUserByEmail = "SELECT * from users WHERE email = ?;";
     public static String setUser = "INSERT INTO users (email, password) VALUES (?, ?);";
     public static String getBaggageByLabel = "SELECT * from baggage WHERE label = ?;";
-    public static String getBaggageByName = "SELECT * from baggage WHERE name = ?;";
+    public static String getBaggageByFirstname = "SELECT * from baggage WHERE firstname = ?;";
+    public static String getBaggageByLastname = "SELECT * from baggage WHERE lastname = ?;";
     public static String getBaggageByAddress = "SELECT * from baggage WHERE address = ?;";
     public static String getBaggageByZip = "SELECT * from baggage WHERE zip = ?;";
     public static String getBaggageByCountry = "SELECT * from baggage WHERE country = ?;";

@@ -5,9 +5,17 @@
  */
 package rekoffer.controllers;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.stage.Stage;
+import rekoffer.views.ViewSwitcher;
 
 /**
  * FXML Controller class
@@ -16,12 +24,20 @@ import javafx.fxml.Initializable;
  */
 public class EmployeeDashboardController implements Initializable {
 
+    ViewSwitcher switcher = new ViewSwitcher();
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+
+    }
+
+    @FXML
+    private void handleButtonAction(ActionEvent event) throws SQLException, IOException {
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        switcher.switchView("employee/registreerKoffer.fxml", stage);
+    }
 }
