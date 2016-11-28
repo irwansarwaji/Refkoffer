@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rekoffer.controllers.NewUserController">
+   <children>
+      <Text layoutX="505.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Creation" underline="true" />
+      <TextField fx:id="emailAddress" layoutX="456.0" layoutY="130.0" promptText="Email Address" />
+      <Text layoutX="292.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insert new email address" />
+      <Button layoutX="526.0" layoutY="263.0" mnemonicParsing="false" onAction="#saveButton" text="Save" />
+      <PasswordField fx:id="password" layoutX="456.0" layoutY="170.0" promptText="Password" />
+      <Text layoutX="319.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insert new password" />
+      <PasswordField fx:id="repeatPassword" layoutX="456.0" layoutY="213.0" promptText="Password" />
+      <Text layoutX="340.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repeat password" />
+      <Label fx:id="wrongPassword" layoutX="301.0" layoutY="109.0" prefHeight="21.0" prefWidth="500.0" textAlignment="CENTER" />
+      <Button layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#backButton" text="Return" />
+      <Button layoutX="1021.0" layoutY="9.0" mnemonicParsing="false" onAction="#logoutButton" text="Logout" />
+   </children>
+</AnchorPane>

@@ -12,4 +12,5 @@ package rekoffer.services;
 public class Statements {
     public static String getUser = "SELECT * from users WHERE id = ?;";
     public static String getUserByEmail = "SELECT * from users WHERE email = ?;";
+    public static String setUser = "INSERT INTO users (email, password) VALUES (?, ?);";
 }

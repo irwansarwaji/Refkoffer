@@ -5,24 +5,49 @@
  */
 package rekoffer.controllers;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import rekoffer.services.Session;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import rekoffer.services.DatabaseFunctions;
+import rekoffer.views.ViewSwitcher;
 
 /**
  * FXML Controller class
  *
- * @author Damon
+ * @author Jacco
  */
 public class ManagerDashboardController implements Initializable {
+ViewSwitcher switcher = new ViewSwitcher();
+    @FXML
+    public Label onlineUsers;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //todo load name into username label from session
-    }    
-    
+
+    }
+
+
+    @FXML
+    private void handleButtonAction(ActionEvent event) throws SQLException, IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        switcher.switchView("manager/NewUser.fxml", stage);
+    }
+
+    @FXML
+    private void logoutButton(ActionEvent event) throws SQLException, IOException {
+        DatabaseFunctions.disconnect();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        switcher.switchView("Login.fxml", stage);
+    }
+
 }
