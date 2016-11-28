@@ -64,7 +64,7 @@ public class LoginController implements Initializable {
                         //Get our stage
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         //Send user to another view
-                        switcher.switchView("manager/Dashboard.fxml", stage);
+                        switcher.switchView("employee/Dashboard.fxml", stage);
 
                     } else {
                         //Password is incorrect

@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.stage.Stage;
@@ -23,20 +24,20 @@ import rekoffer.views.ViewSwitcher;
  */
 public class EmployeeDashboardController implements Initializable {
 
+    ViewSwitcher switcher = new ViewSwitcher();
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    //niet af 
-        private void handleButtonAction(ActionEvent event) throws SQLException, IOException {
-        ResultSet result = null;
-        
-        ViewSwitcher switcher = new ViewSwitcher();
-        
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        switcher.switchView("registreerKoffer.fxml", stage);
+
     }
 
+    @FXML
+    private void handleButtonAction(ActionEvent event) throws SQLException, IOException {
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        switcher.switchView("employee/registreerKoffer.fxml", stage);
+    }
 }
