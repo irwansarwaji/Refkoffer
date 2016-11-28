@@ -7,7 +7,10 @@ package rekoffer.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import rekoffer.services.Session;
 
 /**
  * FXML Controller class
@@ -16,12 +19,18 @@ import javafx.fxml.Initializable;
  */
 public class RegisterLostController implements Initializable {
 
+    @FXML
+    public Label user_name;
+    
+    
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        user_name.setText(Session.getSessionUser().getFirstName() + ", " + Session.getSessionUser().getLastName());
     }    
     
 }

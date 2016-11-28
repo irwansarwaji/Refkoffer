@@ -40,14 +40,14 @@ ViewSwitcher switcher = new ViewSwitcher();
     @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException, IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        switcher.switchView("manager/NewUser.fxml", stage);
+        switcher.switchView("manager/NewUser.fxml", event);
     }
 
     @FXML
     private void logoutButton(ActionEvent event) throws SQLException, IOException {
         DatabaseFunctions.disconnect();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        switcher.switchView("Login.fxml", stage);
+        switcher.switchView("Login.fxml", event);
     }
 
 }

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package rekoffer.services;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -13,6 +9,12 @@ import org.mindrot.jbcrypt.BCrypt;
  */
 public class Authenticate {
     
+    /**
+     * checks if user password was correct
+     * @param plainPassword password from user input
+     * @param dbPassword hash from the database
+     * @return true if the user password is correct
+     */
     public static boolean authenticateUser(String plainPassword, String dbPassword)
     {
         // Check unencrypted password with one that is hashed
@@ -26,6 +28,11 @@ public class Authenticate {
         }
     }
     
+    /**
+     * 
+     * @param plainPassword plain userinput password
+     * @return hashed password fit for the database (includes salt)
+     */
     public static String createPassword(String plainPassword)
     {
          // Hash a password

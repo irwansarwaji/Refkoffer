@@ -12,11 +12,20 @@ public class Session {
 
     private static User sessionUser;
 
+    /**
+     * Sets a static variable named sessionUser which holds an user object
+     * This can be used to hold the user that signed in through the entire lifecycle of the application
+     * @param user 
+     */
     public static void setSessionUser(User user) {
         sessionUser = user;
     }
 
-    public User getSessionUser() {
+    /**
+     * Get the user that is logged in
+     * @return (User) Current signed in user
+     */
+    public static User getSessionUser() {
         return sessionUser;
     }
 

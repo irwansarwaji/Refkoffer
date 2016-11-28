@@ -64,12 +64,12 @@ public class NewUserController implements Initializable {
     @FXML
     private void backButton(ActionEvent event) throws SQLException, IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        switcher.switchView("manager/Dashboard.fxml", stage);
+        switcher.switchView("manager/Dashboard.fxml", event);
     }
     @FXML
     private void logoutButton(ActionEvent event) throws SQLException, IOException {
         DatabaseFunctions.disconnect();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        switcher.switchView("Login.fxml", stage);
+        switcher.switchView("Login.fxml", event);
     }
 }

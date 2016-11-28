@@ -56,24 +56,24 @@ public class LoginController implements Initializable {
             //Start user session
             Session.setSessionUser(loginUser);
 
-            //Get the stage
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
             //Send user to another view
             ViewSwitcher switcher = new ViewSwitcher();
-            switcher.switchView("employee/Dashboard.fxml", stage);
+            switcher.switchView("employee/Dashboard.fxml", event);
 
+        }
+        else
+        {
+            error_message.setText("Oops! Please check your credentials");
         }
     }
 
     private boolean checkInputAndAuthenticate(String mEmail, String mPassword) throws SQLException {
-        ResultSet result = null;
 
         //Check if user input is empty
         if (!user_email.getText().equals("") && !user_password.getText().equals("")) {
             try {
                 //Get the user from the database
-                result = DatabaseFunctions.getUserByEmail(mEmail);
+                ResultSet result = DatabaseFunctions.getUserByEmail(mEmail);
                 if (!result.isBeforeFirst()) {
                     //No user exists with the email from user input
                     return false;
