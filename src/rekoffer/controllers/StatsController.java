@@ -32,7 +32,7 @@ public class StatsController implements Initializable {
      @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException, IOException {
          System.out.println("Hello World!");
-         mijnliefeknopje.setText("harambe");
+         
         
 
     }
