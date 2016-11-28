@@ -8,3 +8,5 @@ Username : Bakker12team5
 Password : rekoffer5
 
 Datbase name:Bakker12rekoffer
+
+URL: mysql6.mijnhostingpartner.nl
