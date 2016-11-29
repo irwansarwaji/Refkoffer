@@ -9,4 +9,4 @@ Password : rekoffer5
 
 Datbase name:Bakker12rekoffer
 
-URL: mysql6.mijnhostingpartner.nl
+URL: http://mysql6.mysqlwebadmin.nl/
