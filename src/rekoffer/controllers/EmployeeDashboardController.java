@@ -14,7 +14,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import static rekoffer.services.DatabaseFunctions.disconnect;
+import rekoffer.services.Session;
 import rekoffer.views.ViewSwitcher;
 
 /**
@@ -25,12 +28,16 @@ import rekoffer.views.ViewSwitcher;
 public class EmployeeDashboardController implements Initializable {
 
     ViewSwitcher switcher = new ViewSwitcher();
+    @FXML
+    public Label user_name;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        user_name.setText(Session.getSessionUser().getFirstName() + ", " + Session.getSessionUser().getLastName());
 
     }
 
@@ -40,4 +47,12 @@ public class EmployeeDashboardController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         switcher.switchView("employee/RegisterLost.fxml", event);
     }
+
+    @FXML
+    private void logoutButton(ActionEvent event) throws SQLException, IOException {
+        disconnect();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        switcher.switchView("Login.fxml", event);
+    }
+
 }

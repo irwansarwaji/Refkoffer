@@ -5,12 +5,18 @@
  */
 package rekoffer.controllers;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import rekoffer.services.Session;
+import rekoffer.views.ViewSwitcher;
 
 /**
  * FXML Controller class
@@ -21,9 +27,7 @@ public class RegisterLostController implements Initializable {
 
     @FXML
     public Label user_name;
-    
-    
-    
+    ViewSwitcher switcher = new ViewSwitcher();
     /**
      * Initializes the controller class.
      */
@@ -31,6 +35,13 @@ public class RegisterLostController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         user_name.setText(Session.getSessionUser().getFirstName() + ", " + Session.getSessionUser().getLastName());
-    }    
-    
-}
+
+    }
+        @FXML
+        private void backButton
+        (ActionEvent event) throws SQLException, IOException {
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            switcher.switchView("employee/Dashboard.fxml", event);
+        }
+    }
