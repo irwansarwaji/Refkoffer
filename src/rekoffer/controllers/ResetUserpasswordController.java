@@ -67,7 +67,7 @@ public class ResetUserpasswordController implements Initializable {
         } else if (password.getText().equals(repeatPassword.getText())) {
             //passwords match. Enter info in database
             DatabaseFunctions.setNewPasswordByEmail(emailAddress.getText(), password.getText());
-            warningLabel.setText("New user saved!");
+            warningLabel.setText("Password is changed!");
         } else {
             //passwords dont match
             warningLabel.setText("Passwords don't match. Please try again.");

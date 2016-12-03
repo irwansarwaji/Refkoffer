@@ -208,9 +208,11 @@ public class DatabaseFunctions {
      * @throws SQLException 
      */
     public static void setNewPasswordByEmail(String userEmail, String newPassword) throws SQLException{
+        connect();
         String cryptedPassword = Authenticate.createPassword(newPassword);
         preparedStatement = con.prepareStatement(setPasswordByEmail);
         preparedStatement.setString(1, cryptedPassword);
         preparedStatement.setString(2, userEmail);
+        preparedStatement.executeUpdate();
     }
 }
