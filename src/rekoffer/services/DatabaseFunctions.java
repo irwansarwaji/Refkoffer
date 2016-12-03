@@ -47,6 +47,18 @@ public class DatabaseFunctions {
 
         return res;
     }
+    
+    /**
+     * 
+     * @return List of all non manager users
+     * @throws SQLException 
+     */
+    public static ResultSet getAllUsers() throws SQLException{
+        connect();
+        preparedStatement = con.prepareStatement(getAllUsers);
+        res = preparedStatement.executeQuery();
+        return res;
+    }
 
 
     /**
