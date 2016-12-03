@@ -65,7 +65,12 @@ public class DatabaseFunctions {
         return res;
     }
 
-    //database for missing baggage
+    /**
+     * 
+     * @param label - Label van de koffer
+     * @return alle koffers met ingevoerd label
+     * @throws SQLException 
+     */
     public static ResultSet getBaggageByLabel(String label) throws SQLException {
         connect();
         preparedStatement = con.prepareStatement(getBaggageByLabel);
@@ -170,7 +175,10 @@ public class DatabaseFunctions {
      * @param userEmail - email van de nieuwe gebruiker
      * @param newPassword - wachtwoord van de nieuwe gebruiker. Wachtwoord wordt
      * encrypted
-     * @param repeatPassword
+     * 
+     * @param repeatPassword - wachtwoord van de nieuwe gebruiker om te check of het wachtwoord
+     * goed is getypt
+     * 
      * @throws SQLException
      */
     public static void createNewUser(String userEmail, String newPassword, String repeatPassword) throws SQLException {
@@ -193,10 +201,16 @@ public class DatabaseFunctions {
     }
     
     
-    
-    public static void setNewPassword(String newPassword, String userEmail) throws SQLException{
+    /**
+     * 
+     * @param userEmail - Emailadres van de gebruiker waarvan het mailadres wordt verandert
+     * @param newPassword - Nieuw wachtwoord voor de gebruiker
+     * @throws SQLException 
+     */
+    public static void setNewPasswordByEmail(String userEmail, String newPassword) throws SQLException{
         String cryptedPassword = Authenticate.createPassword(newPassword);
-        preparedStatement = con.prepareStatement(setPassword);
+        preparedStatement = con.prepareStatement(setPasswordByEmail);
         preparedStatement.setString(1, cryptedPassword);
+        preparedStatement.setString(2, userEmail);
     }
 }

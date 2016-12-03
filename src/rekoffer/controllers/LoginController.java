@@ -58,7 +58,7 @@ public class LoginController implements Initializable {
 
             //Send user to another view
             ViewSwitcher switcher = new ViewSwitcher();
-            switcher.switchView("employee/Dashboard.fxml", event);
+            switcher.switchView("manager/Dashboard.fxml", event);
 
         }
         else

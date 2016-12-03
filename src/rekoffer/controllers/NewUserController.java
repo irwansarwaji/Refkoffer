@@ -61,11 +61,13 @@ public class NewUserController implements Initializable {
 
     }
 
+    //switch terug naar het vorige scherm
     @FXML
     private void backButton(ActionEvent event) throws SQLException, IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         switcher.switchView("manager/Dashboard.fxml", event);
     }
+    //disconnect van de database en ga terug naar het loginscherm
     @FXML
     private void logoutButton(ActionEvent event) throws SQLException, IOException {
         DatabaseFunctions.disconnect();

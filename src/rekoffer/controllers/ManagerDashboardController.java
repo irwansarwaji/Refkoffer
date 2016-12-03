@@ -24,7 +24,7 @@ import rekoffer.views.ViewSwitcher;
  * @author Jacco
  */
 public class ManagerDashboardController implements Initializable {
-ViewSwitcher switcher = new ViewSwitcher();
+    ViewSwitcher switcher = new ViewSwitcher();
     @FXML
     public Label onlineUsers;
 
@@ -37,17 +37,33 @@ ViewSwitcher switcher = new ViewSwitcher();
     }
 
 
+    //switch view naar gebruiker aanmaakscherm
     @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException, IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         switcher.switchView("manager/NewUser.fxml", event);
     }
 
+    //disconnecten van de database en teruggaan naar het inlogscherm
     @FXML
     private void logoutButton(ActionEvent event) throws SQLException, IOException {
         DatabaseFunctions.disconnect();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         switcher.switchView("Login.fxml", event);
+    }
+    
+    //Switch view naar user password resetting
+    @FXML
+    private void resetPasswordButton(ActionEvent event) throws SQLException, IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        switcher.switchView("manager/ResetUserpassword.fxml", event);
+    }
+    
+        //switch terug naar het vorige scherm
+    @FXML
+    private void statsOverview(ActionEvent event) throws SQLException, IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        switcher.switchView("manager/Overview.fxml", event);
     }
 
 }

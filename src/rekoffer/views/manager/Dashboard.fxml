@@ -15,5 +15,7 @@
       <Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hallo manager dashboard" />
       <Button layoutX="207.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Create new user" />
       <Button layoutX="1018.0" layoutY="10.0" mnemonicParsing="false" onAction="#logoutButton" text="Logout" />
+      <Button layoutX="344.0" layoutY="9.0" mnemonicParsing="false" onAction="#resetPasswordButton" text="Change Userpassword" />
+      <Button layoutX="518.0" layoutY="9.0" mnemonicParsing="false" onAction="#statsOverview" text="Statistics Overview" />
    </children>
 </AnchorPane>
