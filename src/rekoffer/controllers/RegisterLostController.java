@@ -5,8 +5,11 @@
  */
 package rekoffer.controllers;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -33,4 +36,18 @@ public class RegisterLostController implements Initializable {
         user_name.setText(Session.getSessionUser().getFirstName() + ", " + Session.getSessionUser().getLastName());
     }    
     
+    @FXML
+    private void returnDashboard(ActionEvent event) throws IOException, SQLException {
+        
+    }
+    
+    @FXML
+    private void registerFound(ActionEvent event) throws IOException, SQLException {
+        
+    }
+            
+    @FXML
+    private void saveBaggage(ActionEvent event) throws IOException, SQLException {
+        
+    }
 }
