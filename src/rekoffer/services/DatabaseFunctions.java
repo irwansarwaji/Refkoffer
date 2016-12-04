@@ -193,12 +193,15 @@ public class DatabaseFunctions {
      * 
      * @throws SQLException
      */
-    public static void createNewUser(String userEmail, String newPassword, String repeatPassword) throws SQLException {
+    public static void createNewUser(String userEmail, String newPassword, String repeatPassword, String firstName, String lastName, String phoneNumber) throws SQLException {
         String cryptedPassword = Authenticate.createPassword(newPassword);
         connect();
         preparedStatement = con.prepareStatement(setUser);
         preparedStatement.setString(1, userEmail);
         preparedStatement.setString(2, cryptedPassword);
+        preparedStatement.setString(3, firstName);
+        preparedStatement.setString(4, lastName);
+        preparedStatement.setString(5, phoneNumber);
         preparedStatement.executeUpdate();
     }
     

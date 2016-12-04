@@ -13,7 +13,7 @@ public class Statements {
     public static String getUser = "SELECT * from users WHERE id = ?;";
     public static String getAllUsers = "SELECT * FROM USERS WHERE type = 1;";
     public static String getUserByEmail = "SELECT * from users WHERE email = ?;";
-    public static String setUser = "INSERT INTO users (email, password) VALUES (?, ?);";
+    public static String setUser = "INSERT INTO users (email, password, first_name, last_name, phone) VALUES (?, ?, ?, ?, ?);";
     public static String getBaggageByLabel = "SELECT * from baggage WHERE label = ?;";
     public static String getBaggageByFirstname = "SELECT * from baggage WHERE firstname = ?;";
     public static String getBaggageByLastname = "SELECT * from baggage WHERE lastname = ?;";

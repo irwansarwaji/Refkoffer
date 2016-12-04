@@ -32,6 +32,9 @@ public class NewUserController implements Initializable {
     public TextField emailAddress;
     public PasswordField password;
     public PasswordField repeatPassword;
+    public TextField firstName;
+    public TextField lastName;
+    public TextField phoneNumber;
     public Label wrongPassword;
 
     /**
@@ -52,7 +55,7 @@ public class NewUserController implements Initializable {
             wrongPassword.setText("Emailaddress is empty!");
         } else if (password.getText().equals(repeatPassword.getText())) {
             //passwords match. Enter info in database
-            DatabaseFunctions.createNewUser(emailAddress.getText(), password.getText(), repeatPassword.getText());
+            DatabaseFunctions.createNewUser(emailAddress.getText(), password.getText(), repeatPassword.getText(), firstName.getText(), lastName.getText(), phoneNumber.getText());
             wrongPassword.setText("New user saved!");
         } else {
             //passwords dont match
