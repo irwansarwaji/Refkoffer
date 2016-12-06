@@ -147,10 +147,10 @@ public class DatabaseFunctions {
         return res;
     }
 
-    public static ResultSet getBaggageBySuitcasetype(String suitcasetype) throws SQLException {
+    public static ResultSet getBaggageBySuitcasetype(int suitcasetype) throws SQLException {
         connect();
         preparedStatement = con.prepareStatement(getBaggageBySuitcasetype);
-        preparedStatement.setString(1, suitcasetype);
+        preparedStatement.setInt(1, suitcasetype);
         res = preparedStatement.executeQuery();
 
         return res;

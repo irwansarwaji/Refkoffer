@@ -22,7 +22,7 @@ public class Statements {
     public static String getBaggageByTelephone = "SELECT * from baggage WHERE telephone = ?;";
     public static String getBaggageByEmail = "SELECT * from baggage WHERE email = ?;";
     public static String getBaggageByColour = "SELECT * from baggage WHERE colour = ?;";
-    public static String getBaggageBySuitcasetype = "SELECT * from baggage WHERE suitcasetype = ?;";
+    public static String getBaggageBySuitcasetype = "SELECT * from baggage WHERE suitcase_type = ?;";
     public static String getBaggageBySuitcasebrand = "SELECT * from baggage WHERE suitecasebrand = ?;";
     public static String getID = "SELECT id FROM rekoffer.users WHERE email= ?;";
     public static String setPassword = "UPDATE users SET password = ? WHERE id = ?;";
