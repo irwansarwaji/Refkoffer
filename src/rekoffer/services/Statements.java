@@ -11,8 +11,9 @@ package rekoffer.services;
  */
 public class Statements {
     public static String getUser = "SELECT * from users WHERE id = ?;";
+    public static String getAllUsers = "SELECT * FROM USERS WHERE type = 1;";
     public static String getUserByEmail = "SELECT * from users WHERE email = ?;";
-    public static String setUser = "INSERT INTO users (email, password) VALUES (?, ?);";
+    public static String setUser = "INSERT INTO users (email, password, first_name, last_name, phone) VALUES (?, ?, ?, ?, ?);";
     public static String getBaggageByLabel = "SELECT * from baggage WHERE label = ?;";
     public static String getBaggageByFirstname = "SELECT * from baggage WHERE firstname = ?;";
     public static String getBaggageByLastname = "SELECT * from baggage WHERE lastname = ?;";
@@ -24,7 +25,8 @@ public class Statements {
     public static String getBaggageByColour = "SELECT * from baggage WHERE colour = ?;";
     public static String getBaggageBySuitcasetype = "SELECT * from baggage WHERE suitcase_type = ?;";
     public static String getBaggageBySuitcasebrand = "SELECT * from baggage WHERE suitecasebrand = ?;";
-    public static String getID = "SELECT id FROM rekoffer.users WHERE email= ?;";
-    public static String setPassword = "UPDATE users SET password = ? WHERE id = ?;";
+    public static String getID = "SELECT id FROM users WHERE email= ?;";
+    public static String setPasswordById = "UPDATE users SET password = ? WHERE id = ?;";
+    public static String setPasswordByEmail = "UPDATE users SET password = ? WHERE email = ?;";
 
 }
