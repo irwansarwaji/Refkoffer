@@ -23,6 +23,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import rekoffer.models.User;
 import rekoffer.services.DatabaseFunctions;
 import rekoffer.views.ViewSwitcher;
 
@@ -38,7 +39,7 @@ public class ManagerDashboardController implements Initializable {
     public ListView userlist;
     
     //Dit is geen user object list maar een makkelijke manier voor nu
-    public ObservableList<String> employees =FXCollections.observableArrayList ();
+    public ObservableList<User> employees = FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class.
@@ -92,7 +93,8 @@ public class ManagerDashboardController implements Initializable {
            //Ik maak er nu een lange lelijke string van voor het laten zien.
            //Dit kan natuurlijk een mooie printF worden en misschien kan je er een mooi tabel van maken met headers boven aan om aantegeven dat het over een telefoonnummer gaat bijvoorbeeld
            //Dit laat alleen medewerkers zien, geen manager accounts.
-           employees.add(" " + result.getString("first_name") + " " + result.getString("last_name") + " " + result.getString("email") + " " + result.getString("phone"));
+           User employee = new User(result.getInt("id"), result.getString("email"),result.getString("first_name"), result.getString("last_name"), result.getString("phone"), result.getInt("type"));
+           employees.add(employee);
        }
        
         userlist.setItems(employees);

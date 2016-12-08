@@ -58,11 +58,12 @@ public class LoginController implements Initializable {
 
             //Send user to another view
             ViewSwitcher switcher = new ViewSwitcher();
-            switcher.switchView("manager/Dashboard.fxml", event);
-
-        }
-        else
-        {
+            if (loginUser.getType() == 1) {
+                switcher.switchView("employee/Dashboard.fxml", event);
+            } else {
+                switcher.switchView("manager/Dashboard.fxml", event);
+            }
+        } else {
             error_message.setText("Oops! Please check your credentials");
         }
     }
@@ -81,15 +82,15 @@ public class LoginController implements Initializable {
                     result.first();
                     //Check if user password is correct
                     if (authenticateUser(mPassword, result.getString("password"))) {
-                        
+
                         //The User that is accessable by all methods of this class is set
-                        loginUser = new User(result.getInt("id"), 
-                                            result.getString("email"), 
-                                            result.getString("first_name"), 
-                                            result.getString("last_name"), 
-                                            result.getString("phone"), 
-                                            result.getInt("type"));
-                        
+                        loginUser = new User(result.getInt("id"),
+                                result.getString("email"),
+                                result.getString("first_name"),
+                                result.getString("last_name"),
+                                result.getString("phone"),
+                                result.getInt("type"));
+
                         return true;
 
                     } else {
