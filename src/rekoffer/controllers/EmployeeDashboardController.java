@@ -37,10 +37,20 @@ public class EmployeeDashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        /**
+         * shows the user
+         */
         user_name.setText(Session.getSessionUser().getFirstName() + ", " + Session.getSessionUser().getLastName());
 
     }
 
+    
+    /**
+     * button that takes you to the next screen
+     * @param event
+     * @throws SQLException
+     * @throws IOException 
+     */
     @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException, IOException {
 
@@ -48,6 +58,12 @@ public class EmployeeDashboardController implements Initializable {
         switcher.switchView("employee/RegisterLost.fxml", event);
     }
 
+    /**
+     * log out button
+     * @param event
+     * @throws SQLException
+     * @throws IOException 
+     */
     @FXML
     private void logoutButton(ActionEvent event) throws SQLException, IOException {
         disconnect();

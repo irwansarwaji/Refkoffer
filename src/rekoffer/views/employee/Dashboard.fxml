@@ -9,7 +9,7 @@
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1110.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rekoffer.controllers.EmployeeDashboardController">
    <children>
       <Button layoutX="502.0" layoutY="486.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="58.0" prefWidth="153.0" text="Registreer Koffer" />
-      <Button layoutX="885.0" layoutY="155.0" mnemonicParsing="false" text="Zoek koffer" />
+      <Button layoutX="885.0" layoutY="155.0" mnemonicParsing="false" onAction="#searchBaggageButton" text="Zoek koffer" />
       <TextField layoutX="255.0" layoutY="153.0" prefHeight="30.0" prefWidth="600.0" />
             <Label fx:id="user_name" layoutX="897.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="153.0" textAlignment="RIGHT" />
       <Button layoutX="30.0" layoutY="28.0" mnemonicParsing="false" onAction="#logoutButton" prefHeight="27.0" prefWidth="82.0" text="Logout" />
