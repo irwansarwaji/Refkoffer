@@ -60,7 +60,7 @@ public class LoginController implements Initializable {
             ViewSwitcher switcher = new ViewSwitcher();
             if (loginUser.getType() == 1) {
                 switcher.switchView("employee/Dashboard.fxml", event);
-            } else {
+            } else if(loginUser.getType() == 2){
                 switcher.switchView("manager/Dashboard.fxml", event);
             }
         } else {
