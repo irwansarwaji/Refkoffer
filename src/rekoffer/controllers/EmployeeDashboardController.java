@@ -24,6 +24,7 @@ import rekoffer.views.ViewSwitcher;
  */
 public class EmployeeDashboardController implements Initializable {
 
+    boolean savedBaggage;
     ViewSwitcher switcher = new ViewSwitcher();
 
     /**
@@ -39,5 +40,10 @@ public class EmployeeDashboardController implements Initializable {
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         switcher.switchView("employee/RegisterLost.fxml", event);
+    }
+    
+    void setSavedStatus(boolean savedBaggage)
+    {
+        this.savedBaggage = savedBaggage;
     }
 }

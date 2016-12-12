@@ -4,6 +4,7 @@ package rekoffer.services;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import rekoffer.models.Baggage;
 import static rekoffer.services.Connect.getConnection;
 import static rekoffer.services.Statements.*;
 
@@ -27,7 +28,10 @@ public class DatabaseFunctions {
     //disconnecten van de database
     public static void disconnect() throws SQLException {
         con.close();
-        res.close();
+        if(res != null)
+        {
+          res.close();
+        }
         preparedStatement.close();
         System.out.println("Database disconnected");
     }
@@ -48,7 +52,43 @@ public class DatabaseFunctions {
         return res;
     }
 
-
+    /**
+     * Saves a lost suitcase
+     * @param label
+     * @param owner
+     * @param firstName
+     * @param lastName
+     * @param country
+     * @param address
+     * @param zip
+     * @param phone
+     * @param email
+     * @param colour
+     * @param other
+     * @param model
+     * @param brand
+     * @throws SQLException 
+     */
+    public static void createNewLostBaggage(Baggage baggage) throws SQLException
+    {
+        connect();
+        preparedStatement = con.prepareStatement(createLostBaggage);
+        preparedStatement.setString(1, baggage.getFirstName());
+        preparedStatement.setString(2, baggage.getLastName());
+        preparedStatement.setString(3, baggage.getAddress());
+        preparedStatement.setString(4, baggage.getZip());
+        preparedStatement.setString(5, baggage.getCountry());
+        preparedStatement.setString(6, baggage.getPhone());
+        preparedStatement.setString(7, baggage.getEmail());
+        preparedStatement.setInt(8, 1);
+        preparedStatement.setString(9, baggage.getLabel());
+        preparedStatement.setString(10, baggage.getSuitcaseBrand());
+        preparedStatement.setString(11, baggage.getSuitcaseColour());
+        preparedStatement.setString(12, baggage.getSuitcaseOther());
+        preparedStatement.setString(13, baggage.getSuitcaseModel());
+        preparedStatement.executeUpdate();
+    }
+    
     /**
      *
      * @param userEmail - email van de gebruiker

@@ -31,4 +31,11 @@ public class ViewSwitcher {
         stage.show(); 
     }
     
+
+    public FXMLLoader getLoader(String viewName)
+    { 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(viewName));
+        return loader;
+    }
+    
 }
