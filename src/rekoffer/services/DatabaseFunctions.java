@@ -199,4 +199,12 @@ public class DatabaseFunctions {
         preparedStatement = con.prepareStatement(setPassword);
         preparedStatement.setString(1, cryptedPassword);
     }
+    
+    public static ResultSet getAllBaggage() throws SQLException{
+        connect();
+        preparedStatement = con.prepareStatement(getAllBaggage);
+        res  = preparedStatement.executeQuery();
+        
+        return res;
+    }
 }

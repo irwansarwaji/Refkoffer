@@ -24,6 +24,7 @@ public class Statements {
     public static String getBaggageByColour = "SELECT * from baggage WHERE colour = ?;";
     public static String getBaggageBySuitcasetype = "SELECT * from baggage WHERE suitcasetype = ?;";
     public static String getBaggageBySuitcasebrand = "SELECT * from baggage WHERE suitecasebrand = ?;";
+    public static String getAllBaggage = "SELECT * from baggage;";
     public static String getID = "SELECT id FROM rekoffer.users WHERE email= ?;";
     public static String setPassword = "UPDATE users SET password = ? WHERE id = ?;";
 
