@@ -270,4 +270,12 @@ public class DatabaseFunctions {
         preparedStatement.setString(2, userEmail);
         preparedStatement.executeUpdate();
     }
+    
+    public static ResultSet getAllBaggage() throws SQLException{
+        connect();
+        preparedStatement = con.prepareStatement(getAllBaggage);
+        res  = preparedStatement.executeQuery();
+        
+        return res;
+    }
 }

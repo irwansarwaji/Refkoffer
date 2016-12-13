@@ -74,6 +74,10 @@ public class Baggage {
         this.additionalContactInfo = additionalContactInfo;
     }
 
+    public Baggage() {
+    }
+
+    
     /**
      * Constructor for registering missing baggage
      * @param label String

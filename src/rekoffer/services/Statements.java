@@ -28,6 +28,7 @@ public class Statements {
     public static String getID = "SELECT id FROM users WHERE email= ?;";
     public static String setPasswordById = "UPDATE users SET password = ? WHERE id = ?;";
     public static String setPasswordByEmail = "UPDATE users SET password = ? WHERE email = ?;";
+    public static String getAllBaggage = "SELECT * from baggage;";
     public static String setPassword = "UPDATE users SET password = ? WHERE id = ?;";
     public static String createLostBaggage = "INSERT INTO baggage (first_name, last_name, address, zip, country, phone, email, suitcase_type, suitcase_label, suitcase_brand, suitcase_color, suitcase_other, suitcase_model, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
 
