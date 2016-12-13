@@ -17,9 +17,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
-import javafx.stage.Stage;
 import rekoffer.models.Baggage;
 import rekoffer.services.DatabaseFunctions;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import static rekoffer.services.DatabaseFunctions.disconnect;
+import rekoffer.services.Session;
 import rekoffer.views.ViewSwitcher;
 
 /**
@@ -32,6 +35,7 @@ public class EmployeeDashboardController implements Initializable {
     boolean savedBaggage;
     ViewSwitcher switcher = new ViewSwitcher();
     List<Baggage> baggageList = new ArrayList<Baggage>();
+    
     @FXML
     private TableColumn<?, ?> firstname;
     @FXML
@@ -49,16 +53,31 @@ public class EmployeeDashboardController implements Initializable {
     @FXML
     private TableColumn<?, ?> status;
 
+    @FXML
+    public Label user_name;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        /**
+         * shows the user
+         */
+        user_name.setText(Session.getSessionUser().getFirstName() + ", " + Session.getSessionUser().getLastName());
+
     }
 
+    
+    /**
+     * button that takes you to the next screen
+     * @param event
+     * @throws SQLException
+     * @throws IOException 
+     */
     @FXML
-    private void handleButtonAction(ActionEvent event) throws SQLException, IOException {
+    private void searchAction(ActionEvent event) throws SQLException, IOException {
 
         //switcher.switchView("employee/RegisterLost.fxml", event);
         ResultSet rs = DatabaseFunctions.getAllBaggage();
@@ -92,4 +111,30 @@ public class EmployeeDashboardController implements Initializable {
     {
         this.savedBaggage = savedBaggage;
     }
+
+    /**
+     * log out button
+     * @param event
+     * @throws SQLException
+     * @throws IOException 
+     */
+    @FXML
+    private void logoutButton(ActionEvent event) throws SQLException, IOException {
+        disconnect();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        switcher.switchView("Login.fxml", event);
+    }
+    
+    @FXML
+    private void registerAction(ActionEvent event) throws SQLException, IOException {
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        switcher.switchView("employee/RegisterLost.fxml", event);
+    }
+    
+    @FXML
+    private void refreshAction(ActionEvent event) throws SQLException, IOException {
+        System.out.println("Refresh kappa123");
+    }
+
 }

@@ -1,4 +1,3 @@
-
 package rekoffer.models;
 
 /**
@@ -6,7 +5,7 @@ package rekoffer.models;
  * @author Damon
  */
 public class Baggage {
-    
+
     private int id;
     private String label;
     private String firstName;
@@ -32,6 +31,7 @@ public class Baggage {
 
     /**
      * Standard constructor
+     *
      * @param id int
      * @param label String
      * @param firstName String
@@ -50,9 +50,9 @@ public class Baggage {
      * @param suitcaseNotes String
      * @param airportSite String
      * @param airportOrigin String
-     * @param additionalContactInfo String 
+     * @param additionalContactInfo String
      */
-    public Baggage(int id,String label, String firstName, String lastName, String address, String zip, String country, String phone, String email, int suitcaseType,String suitcaseModel, String suitcaseBrand, String suitcaseColour, String suitcaseOther, String suitcaseImage, String suitcaseNotes, String airportSite, String airportOrigin, String additionalContactInfo) {
+    public Baggage(int id, String label, String firstName, String lastName, String address, String zip, String country, String phone, String email, int suitcaseType, String suitcaseModel, String suitcaseBrand, String suitcaseColour, String suitcaseOther, String suitcaseImage, String suitcaseNotes, String airportSite, String airportOrigin, String additionalContactInfo) {
         this.id = id;
         this.label = label;
         this.firstName = firstName;
@@ -74,12 +74,9 @@ public class Baggage {
         this.additionalContactInfo = additionalContactInfo;
     }
 
-    public Baggage() {
-    }
-
-    
     /**
      * Constructor for registering missing baggage
+     *
      * @param label String
      * @param firstName String
      * @param lastName String
@@ -95,7 +92,7 @@ public class Baggage {
      * @param suitcaseOther String
      * @param suitcaseNotes String
      */
-    public Baggage(String label, String firstName, String lastName, String address, String zip, String country, String phone, String email, int suitcaseType,String suitcaseModel ,String suitcaseBrand, String suitcaseColour, String suitcaseNotes) {
+    public Baggage(String label, String firstName, String lastName, String address, String zip, String country, String phone, String email, int suitcaseType, String suitcaseModel, String suitcaseBrand, String suitcaseColour, String suitcaseNotes) {
         this.label = label;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -214,7 +211,6 @@ public class Baggage {
     public String getSuitcaseModel() {
         return suitcaseModel;
     }
-    
 
     public void setSuitcaseOther(String suitcaseOther) {
         this.suitcaseOther = suitcaseOther;
@@ -259,8 +255,5 @@ public class Baggage {
     public void setAdditionalContactInfo(String additionalContactInfo) {
         this.additionalContactInfo = additionalContactInfo;
     }
-    
-    
-    
-    
+
 }
