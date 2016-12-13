@@ -18,13 +18,17 @@ public class Baggage {
     private String email;
     private int suitcaseType;
     private String suitcaseBrand;
-    private String suitcaseColor;
+    private String suitcaseModel;
+    private String suitcaseColour;
     private String suitcaseOther;
     private String suitcaseImage;
     private String suitcaseNotes;
     private String airportSite;
     private String airportOrigin;
     private String additionalContactInfo;
+
+    public Baggage() {
+    }
 
     /**
      * Standard constructor
@@ -38,8 +42,9 @@ public class Baggage {
      * @param phone String
      * @param email String
      * @param suitcaseType int - lost(1) found(2)
+     * @param suitcaseModel String
      * @param suitcaseBrand String
-     * @param suitcaseColor String
+     * @param suitcaseColour String
      * @param suitcaseOther String
      * @param suitcaseImage String
      * @param suitcaseNotes String
@@ -47,7 +52,7 @@ public class Baggage {
      * @param airportOrigin String
      * @param additionalContactInfo String 
      */
-    public Baggage(int id,String label, String firstName, String lastName, String address, String zip, String country, String phone, String email, int suitcaseType, String suitcaseBrand, String suitcaseColor, String suitcaseOther, String suitcaseImage, String suitcaseNotes, String airportSite, String airportOrigin, String additionalContactInfo) {
+    public Baggage(int id,String label, String firstName, String lastName, String address, String zip, String country, String phone, String email, int suitcaseType,String suitcaseModel, String suitcaseBrand, String suitcaseColour, String suitcaseOther, String suitcaseImage, String suitcaseNotes, String airportSite, String airportOrigin, String additionalContactInfo) {
         this.id = id;
         this.label = label;
         this.firstName = firstName;
@@ -58,8 +63,9 @@ public class Baggage {
         this.phone = phone;
         this.email = email;
         this.suitcaseType = suitcaseType;
+        this.suitcaseModel = suitcaseModel;
         this.suitcaseBrand = suitcaseBrand;
-        this.suitcaseColor = suitcaseColor;
+        this.suitcaseColour = suitcaseColour;
         this.suitcaseOther = suitcaseOther;
         this.suitcaseImage = suitcaseImage;
         this.suitcaseNotes = suitcaseNotes;
@@ -70,7 +76,6 @@ public class Baggage {
 
     /**
      * Constructor for registering missing baggage
-     * @param id int
      * @param label String
      * @param firstName String
      * @param lastName String
@@ -80,13 +85,13 @@ public class Baggage {
      * @param phone String
      * @param email String
      * @param suitcaseType int - lost(1) found(2)
+     * @param suitcaseModel String
      * @param suitcaseBrand String
-     * @param suitcaseColor String
+     * @param suitcaseColour String
      * @param suitcaseOther String
      * @param suitcaseNotes String
      */
-    public Baggage(int id, String label, String firstName, String lastName, String address, String zip, String country, String phone, String email, int suitcaseType, String suitcaseBrand, String suitcaseColor, String suitcaseOther, String suitcaseNotes) {
-        this.id = id;
+    public Baggage(String label, String firstName, String lastName, String address, String zip, String country, String phone, String email, int suitcaseType,String suitcaseModel ,String suitcaseBrand, String suitcaseColour, String suitcaseNotes) {
         this.label = label;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -96,9 +101,9 @@ public class Baggage {
         this.phone = phone;
         this.email = email;
         this.suitcaseType = suitcaseType;
+        this.suitcaseModel = suitcaseModel;
         this.suitcaseBrand = suitcaseBrand;
-        this.suitcaseColor = suitcaseColor;
-        this.suitcaseOther = suitcaseOther;
+        this.suitcaseColour = suitcaseColour;
         this.suitcaseNotes = suitcaseNotes;
     }
 
@@ -190,17 +195,22 @@ public class Baggage {
         this.suitcaseBrand = suitcaseBrand;
     }
 
-    public String getSuitcaseColor() {
-        return suitcaseColor;
+    public String getSuitcaseColour() {
+        return suitcaseColour;
     }
 
-    public void setSuitcaseColor(String suitcaseColor) {
-        this.suitcaseColor = suitcaseColor;
+    public void setSuitcaseColour(String suitcaseColour) {
+        this.suitcaseColour = suitcaseColour;
     }
 
     public String getSuitcaseOther() {
         return suitcaseOther;
     }
+
+    public String getSuitcaseModel() {
+        return suitcaseModel;
+    }
+    
 
     public void setSuitcaseOther(String suitcaseOther) {
         this.suitcaseOther = suitcaseOther;

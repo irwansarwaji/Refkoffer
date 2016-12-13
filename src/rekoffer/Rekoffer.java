@@ -19,7 +19,8 @@ public class Rekoffer extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("views/Login.fxml"));
         
         Scene scene = new Scene(root);
-        
+        stage.setResizable(false);
+        stage.resizableProperty().setValue(Boolean.FALSE);
         stage.setScene(scene);
         stage.show();
     }
