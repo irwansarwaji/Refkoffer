@@ -65,8 +65,10 @@ public class EmployeeDashboardController implements Initializable {
         
 
         while (rs.next()) {
-                        
-           Baggage baggage = new Baggage(rs.getInt("id"), rs.getString("suitcase_label"), 
+            System.out.println(rs.getString("first_name")
+                    + rs.getString("last_name") + rs.getString("first_name"));
+            
+           /*Baggage baggage = new Baggage(rs.getInt("id"), rs.getString("suitcase_label"), 
             rs.getString("first_name"), rs.getString("last_name"), rs.getString("address"), 
             rs.getString("zip"), rs.getString("country"), rs.getString("phone"), rs.getString("email"),
             rs.getInt("suitcase_type"), rs.getString("suitcase_brand"), rs.getString("suitcase_color"),
@@ -80,10 +82,8 @@ public class EmployeeDashboardController implements Initializable {
             baggageList.get(3).getSuitcaseType();
             baggageList.get(4).getSuitcaseBrand();
             baggageList.get(5).getSuitcaseColor();
-            baggageList.get(6).getSuitcaseType(); 
+            baggageList.get(6).getSuitcaseType(); */
 
         }
-        System.out.println(rs.getString("first_name")
-                    + rs.getString("last_name") + rs.getString("first_name"));
     }
 }
