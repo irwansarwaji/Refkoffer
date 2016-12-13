@@ -81,7 +81,7 @@ public class ManagerDashboardController implements Initializable {
     @FXML
     private void statsOverview(ActionEvent event) throws SQLException, IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        switcher.switchView("manager/Overview.fxml", event);
+        switcher.switchView("manager/stats.fxml", event);
     }
     
     //Fills the existing userlist (listview) with all employees from the database
