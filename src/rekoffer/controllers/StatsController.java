@@ -32,7 +32,7 @@ public class StatsController implements Initializable {
     @FXML
     private void returnDashboard(ActionEvent event) throws IOException {
         ViewSwitcher switcher = new ViewSwitcher();
-        switcher.switchView("employee/Dashboard.fxml", event);
+        switcher.switchView("manager/Dashboard.fxml", event);
 
   
     }
