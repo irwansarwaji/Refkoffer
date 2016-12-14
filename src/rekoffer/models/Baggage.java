@@ -107,6 +107,19 @@ public class Baggage {
         this.suitcaseColour = suitcaseColour;
         this.suitcaseNotes = suitcaseNotes;
     }
+    
+      public Baggage(int id, String label, String country, int suitcaseType, String suitcaseColour, String firstName, String lastName) {
+        //Korte constructor voor Irwan, Moet later worden vervangen door een complete constructor met alle attributen.
+        this.id = id;
+        this.label = label;
+        this.country = country;
+        this.suitcaseType = suitcaseType;
+        this.suitcaseColour = suitcaseColour;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        
+    }
+    
 
     public int getId() {
         return id;
@@ -171,6 +184,8 @@ public class Baggage {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+    
+    
 
     public String getEmail() {
         return email;
