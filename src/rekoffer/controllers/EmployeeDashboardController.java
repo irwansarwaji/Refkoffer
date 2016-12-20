@@ -90,27 +90,10 @@ public class EmployeeDashboardController implements Initializable {
         while (rs.next()) {
             
             //Maak een baggage object aan en vul hem met mooie attributen.
-            Baggage baggage = new Baggage(rs.getInt("id"), rs.getString("suitcase_label"), rs.getString("country"),rs.getInt("suitcase_type"),rs.getString("suitcase_color"),rs.getString("first_name"),rs.getString("last_name"));
+            Baggage baggage = new Baggage(rs.getInt("id"), rs.getString("suitcase_label"), rs.getString("country"),rs.getInt("suitcase_type"),rs.getString("suitcase_color"),rs.getString("first_name"),rs.getString("last_name"), rs.getString("email"), rs.getString("suitcase_model"), rs.getString("suitcase_brand"));
            
             //Nu ga ik deze toevoegen aan mijn lijstje
             baggageList.add(baggage);
-            
-            
-           /*Baggage baggage = new Baggage(rs.getInt("id"), rs.getString("suitcase_label"), 
-            rs.getString("first_name"), rs.getString("last_name"), rs.getString("address"), 
-            rs.getString("zip"), rs.getString("country"), rs.getString("phone"), rs.getString("email"),
-            rs.getInt("suitcase_type"), rs.getString("suitcase_brand"), rs.getString("suitcase_color"),
-            rs.getString("suitcase_other"), rs.getString("suitcase_image"), rs.getString("suitcase_notes"), 
-            rs.getString("airport_site"), rs.getString("airport_origin"), rs.getString("additional_contact_info"));
-            
-            baggageList.add(baggage);
-            baggageList.get(0).getFirstName();
-            baggageList.get(1).getLastName();
-            baggageList.get(2).getLabel();
-            baggageList.get(3).getSuitcaseType();
-            baggageList.get(4).getSuitcaseBrand();
-            baggageList.get(5).getSuitcaseColor();
-            baggageList.get(6).getSuitcaseType(); */
 
         }
         
@@ -138,7 +121,16 @@ public class EmployeeDashboardController implements Initializable {
             //Als de naam de letters bevat van de naam die ik intype doen we wat
             // ?i betekent dat we geen fuck geven om hoofdletters
             // * Sterretje is een soort wildcard van sql  %LIKE%
-            if(bag.getFirstName().matches("(?i)"+ filter +".*"))
+            System.out.println(bag.getSuitcaseModel());
+            if((bag.getLastName().matches("(?i)"+ filter +".*"))|| 
+                bag.getFirstName().matches("(?i)"+ filter +".*")|| 
+                bag.getEmail().matches("(?i)" + filter + ".*")||
+                bag.getLabel().matches("(?i)"+filter+".*")||
+                bag.getSuitcaseModel().matches("(?i)"+filter+".*")||
+                bag.getSuitcaseBrand().matches("(?i)"+filter+".*")||
+                bag.getSuitcaseColour().matches("(?i)"+filter+".*"))
+                    
+                    
             {
                 //Ik kijk nu alleen of de naam overeen komt, maar dat kan dus ook meer worden met een || in mijn IF functie
                 //Voeg de koffer maar toe aan de tijdelijke lijst met resultaten
@@ -152,7 +144,7 @@ public class EmployeeDashboardController implements Initializable {
         //Print het maar lekker uit
         for(Baggage bag : filterBaggageList)
         {
-            System.out.println(bag.getLabel()+bag.getCountry()+bag.getSuitcaseType()+bag.getSuitcaseColour()+bag.getFirstName()+bag.getLastName());
+            System.out.println(bag.getLabel()+bag.getCountry()+bag.getSuitcaseType()+bag.getSuitcaseColour()+bag.getFirstName()+bag.getLastName()+bag.getEmail()+bag.getSuitcaseModel()+bag.getSuitcaseBrand()+bag.getSuitcaseColour());
         }
         
         //Ik kan nu de lijst met alle koffers die kloppen met de zoekterm (filterBaggageList) meegeven aan een methode die mijn table laad met een lijst
