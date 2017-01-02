@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,6 +23,7 @@ import javafx.scene.control.TableColumn;
 import rekoffer.models.Baggage;
 import rekoffer.services.DatabaseFunctions;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import rekoffer.models.Matchcase;
@@ -62,6 +64,7 @@ public class EmployeeDashboardController implements Initializable {
     @FXML
     public Label user_name;
     public TextField filter_text;
+    public ListView userlist1;
 
     /**
      * Initializes the controller class.
@@ -96,10 +99,8 @@ public class EmployeeDashboardController implements Initializable {
            
             //Nu ga ik deze toevoegen aan mijn lijstje
             baggageList.add(baggage);
-
-
+            
         }
-
         //Nu heb ik een lijst met alle koffers uit de database!
     }
 
@@ -148,7 +149,7 @@ public class EmployeeDashboardController implements Initializable {
         //Print het maar lekker uit
         for(Baggage bag : filterBaggageList)
         {
-            System.out.println(bag.getLabel()+bag.getCountry()+bag.getSuitcaseType()+bag.getSuitcaseColour()+bag.getFirstName()+bag.getLastName()+bag.getEmail()+bag.getSuitcaseModel()+bag.getSuitcaseBrand()+bag.getSuitcaseColour());
+            //System.out.println(bag.getLabel()+bag.getCountry()+bag.getSuitcaseType()+bag.getSuitcaseColour()+bag.getFirstName()+bag.getLastName()+bag.getEmail()+bag.getSuitcaseModel()+bag.getSuitcaseBrand()+bag.getSuitcaseColour());
 
         }
 
@@ -223,7 +224,20 @@ public class EmployeeDashboardController implements Initializable {
 
     @FXML
     private void refreshAction(ActionEvent event) throws SQLException, IOException {
-        System.out.println("Refresh kappa123");
-    }
+        //switcher.switchView("employee/RegisterLost.fxml", event);
+        ResultSet rs = DatabaseFunctions.getAllBaggage();
 
-}
+        //Voor iedere rij die wij uit de database halen doe :
+        while (rs.next()) {
+
+            //Maak een baggage object aan en vul hem met mooie attributen.
+
+            Baggage baggage = new Baggage(rs.getInt("id"), rs.getString("suitcase_label"), rs.getString("country"),rs.getInt("suitcase_type"),rs.getString("suitcase_color"),rs.getString("first_name"),rs.getString("last_name"), rs.getString("email"), rs.getString("suitcase_model"), rs.getString("suitcase_brand"),rs.getString("airport_site"));
+           
+            //Nu ga ik deze toevoegen aan mijn lijstje
+            baggageList.add(baggage);
+            
+        }
+userlist1.setItems((ObservableList) baggageList);
+
+}}
