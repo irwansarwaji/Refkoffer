@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,6 +28,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import rekoffer.models.Matchcase;
+import rekoffer.models.User;
 import static rekoffer.services.DatabaseFunctions.disconnect;
 import rekoffer.services.Session;
 import rekoffer.views.ViewSwitcher;
@@ -52,12 +54,11 @@ public class EmployeeDashboardController implements Initializable {
     private TableColumn<?, ?> email;
     @FXML
     private TableColumn<?, ?> suitcaselabel;
+    private TableColumn<?, ?> suitcasecolor;
     @FXML
     private TableColumn<?, ?> suitcasetype;
     @FXML
     private TableColumn<?, ?> suitcasebrand;
-    @FXML
-    private TableColumn<?, ?> suitcasecolor;
     @FXML
     private TableColumn<?, ?> status;
 
@@ -65,6 +66,9 @@ public class EmployeeDashboardController implements Initializable {
     public Label user_name;
     public TextField filter_text;
     public ListView userlist1;
+    
+        public ObservableList<Baggage> baggages = FXCollections.observableArrayList();
+
 
     /**
      * Initializes the controller class.
@@ -80,11 +84,30 @@ public class EmployeeDashboardController implements Initializable {
         //Eerste wat ik doe is een nieuwe lijst ophalen met ALLLE KOFFERS UIT DE DATABASE
         try {
             fillList();
+            fillList2();
         } catch (SQLException ex) {
             Logger.getLogger(EmployeeDashboardController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
+     private void fillList2() throws SQLException {
+      //switcher.switchView("employee/RegisterLost.fxml", event);
+        ResultSet rs = DatabaseFunctions.getAllBaggage();
+
+        //Voor iedere rij die wij uit de database halen doe :
+        while (rs.next()) {
+
+            //Maak een baggage object aan en vul hem met mooie attributen.
+
+            Baggage baggage1 = new Baggage(rs.getInt("id"), rs.getString("suitcase_label"), rs.getString("country"),rs.getInt("suitcase_type"),rs.getString("suitcase_color"),rs.getString("first_name"),rs.getString("last_name"), rs.getString("email"), rs.getString("suitcase_model"), rs.getString("suitcase_brand"),rs.getString("airport_site"));
+           
+            //Nu ga ik deze toevoegen aan mijn lijstje
+            baggages.add(baggage1);
+            
+        }
+userlist1.setItems((ObservableList) baggages);
+     
+     }
 
     private void fillList() throws SQLException {
         //switcher.switchView("employee/RegisterLost.fxml", event);
@@ -224,20 +247,7 @@ public class EmployeeDashboardController implements Initializable {
 
     @FXML
     private void refreshAction(ActionEvent event) throws SQLException, IOException {
-        //switcher.switchView("employee/RegisterLost.fxml", event);
-        ResultSet rs = DatabaseFunctions.getAllBaggage();
-
-        //Voor iedere rij die wij uit de database halen doe :
-        while (rs.next()) {
-
-            //Maak een baggage object aan en vul hem met mooie attributen.
-
-            Baggage baggage = new Baggage(rs.getInt("id"), rs.getString("suitcase_label"), rs.getString("country"),rs.getInt("suitcase_type"),rs.getString("suitcase_color"),rs.getString("first_name"),rs.getString("last_name"), rs.getString("email"), rs.getString("suitcase_model"), rs.getString("suitcase_brand"),rs.getString("airport_site"));
-           
-            //Nu ga ik deze toevoegen aan mijn lijstje
-            baggageList.add(baggage);
-            
-        }
-userlist1.setItems((ObservableList) baggageList);
+        
 
 }}
+
