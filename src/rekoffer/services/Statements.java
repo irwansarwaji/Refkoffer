@@ -10,6 +10,9 @@ package rekoffer.services;
  * @author Damon
  */
 public class Statements {
+    public static String getMatchedLabels = "SELECT suitcase_label FROM baggage WHERE suitcase_type = 2";
+    public static String getLostLabels = "SELECT suitcase_label FROM baggage WHERE suitcase_type = 1";
+    public static String getFoundLabels = "SELECT suitcase_label FROM baggage WHERE suitcase_type = 1";
     public static String getUser = "SELECT * from users WHERE id = ?;";
     public static String getAllUsers = "SELECT * FROM USERS;";
     public static String getUserByEmail = "SELECT * from users WHERE email = ?;";

@@ -278,4 +278,22 @@ public class DatabaseFunctions {
         
         return res;
     }
+      public static ResultSet getLostLabel() throws SQLException{
+        connect();
+        preparedStatement = con.prepareStatement(getLostLabels);
+        res = preparedStatement.executeQuery();
+        return res;
+    }
+      public static ResultSet getFoundLabel() throws SQLException{
+        connect();
+        preparedStatement = con.prepareStatement(getFoundLabels);
+        res = preparedStatement.executeQuery();
+        return res;
+    }
+      public static ResultSet getMatchedLabel() throws SQLException{
+        connect();
+        preparedStatement = con.prepareStatement(getMatchedLabels);
+        res = preparedStatement.executeQuery();
+        return res;
+    }
 }
