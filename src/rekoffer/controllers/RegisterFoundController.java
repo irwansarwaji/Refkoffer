@@ -32,14 +32,14 @@ import rekoffer.views.ViewSwitcher;
  *
  * @author damon
  */
-public class RegisterLostController implements Initializable {
+public class RegisterFoundController implements Initializable {
 
     ViewSwitcher switcher = new ViewSwitcher();
 
     @FXML
     public Label user_name,errorMessage;
-    public TextField label, firstname_owner, lastname_owner, zip, phone, email, colour, other, model, brand, country;
-    public TextArea special, address;
+    public TextField label, firstname_owner, lastname_owner, airport_site, airport_origin, colour, model, brand;
+    public TextArea special;
 
     /**
      * Initializes the controller class.
@@ -58,39 +58,37 @@ public class RegisterLostController implements Initializable {
     }
 
     @FXML
-    private void registerFound(ActionEvent event) throws IOException, SQLException {
+    private void registerLost(ActionEvent event) throws IOException, SQLException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        switcher.switchView("employee/RegisterFound.fxml", event);
+        switcher.switchView("employee/RegisterLost.fxml", event);
     }
 
     @FXML
     private void saveBaggage(ActionEvent event) throws IOException, SQLException {
 
-        if (label.getText().isEmpty() || firstname_owner.getText().isEmpty() || email.getText().isEmpty() || lastname_owner.getText().isEmpty()) {
-            errorMessage.setText("At least the first name, last name, Baggage Label  and email of the owner have to be filled in");
-        } else {
-            String mLabel, mFirstNameOwner, mLastNameOwner, mZip, mPhone, mEmail, mColour, mOther, mModel, mBrand, mSpecial, mAddress, mCountry;
+      
+            String mLabel, mFirstNameOwner, mLastNameOwner, mColour, mModel, mBrand, mSpecial, mSite, mOrigin;
             mLabel = label.getText();
-            mCountry = country.getText();
             mFirstNameOwner = firstname_owner.getText();
             mLastNameOwner = lastname_owner.getText();
-            mZip = zip.getText();
-            mPhone = phone.getText();
-            mEmail = email.getText();
             mColour = colour.getText();
             mModel = model.getText();
             mBrand = brand.getText();
             mSpecial = special.getText();
-            mAddress = address.getText();
+            mSite = airport_site.getText();
+            mOrigin = airport_origin.getText();
 
-            Baggage newBaggage = new Baggage(mLabel, mFirstNameOwner, mLastNameOwner, mAddress, mZip, mCountry, mPhone, mEmail, 1, mModel, mBrand, mColour, mSpecial);
+            Baggage newBaggage = new Baggage(mLabel, mFirstNameOwner, mLastNameOwner, 2, mModel, mBrand, mColour, mSpecial, mSite, mOrigin);
+            
+            System.out.println("special");
+            System.out.println(mSpecial);
 
-            DatabaseFunctions.createNewLostBaggage(newBaggage);
+            DatabaseFunctions.createNewFoundBaggage(newBaggage);
             DatabaseFunctions.disconnect();
 
             returnAfterSaving(event);
 
-        }
+        
 
     }
 

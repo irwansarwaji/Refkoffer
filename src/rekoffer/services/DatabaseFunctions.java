@@ -66,6 +66,7 @@ public class DatabaseFunctions {
 
     /**
      * Saves a lost suitcase
+     * @param baggage CONTAINS
      * @param label
      * @param owner
      * @param firstName
@@ -98,6 +99,37 @@ public class DatabaseFunctions {
         preparedStatement.setString(11, baggage.getSuitcaseColour());
         preparedStatement.setString(12, baggage.getSuitcaseOther());
         preparedStatement.setString(13, baggage.getSuitcaseModel());
+        preparedStatement.executeUpdate();
+    }
+    
+     /**
+     * Saves a lost suitcase
+     * @param baggage CONTAINS
+     * @param label
+     * @param firstName
+     * @param lastName
+     * @param colour
+     * @param other
+     * @param model
+     * @param brand
+     * @param airport_site
+     * @param airport_origin
+     * @throws SQLException 
+     */
+    public static void createNewFoundBaggage(Baggage baggage) throws SQLException
+    {
+        connect();
+        preparedStatement = con.prepareStatement(createFoundBaggage);
+        preparedStatement.setString(1, baggage.getFirstName());
+        preparedStatement.setString(2, baggage.getLastName());
+        preparedStatement.setInt(3, 2);
+        preparedStatement.setString(4, baggage.getLabel());
+        preparedStatement.setString(5, baggage.getSuitcaseBrand());
+        preparedStatement.setString(6, baggage.getSuitcaseColour());
+        preparedStatement.setString(7, baggage.getSuitcaseModel());
+        preparedStatement.setString(8, baggage.getSuitcaseNotes());
+        preparedStatement.setString(9, baggage.getAirportSite());
+        preparedStatement.setString(10, baggage.getAirportOrigin());
         preparedStatement.executeUpdate();
     }
     
