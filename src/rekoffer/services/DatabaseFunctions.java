@@ -207,7 +207,7 @@ public class DatabaseFunctions {
     public static ResultSet getBaggageBySuitcasetype(int suitcasetype) throws SQLException {
         connect();
         preparedStatement = con.prepareStatement(getBaggageBySuitcasetype);
-        preparedStatement.setInt(1, suitcasetype);
+        preparedStatement.setInt(1, 1);
         res = preparedStatement.executeQuery();
 
         return res;

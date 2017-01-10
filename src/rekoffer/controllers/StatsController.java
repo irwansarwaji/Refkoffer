@@ -46,54 +46,57 @@ public class StatsController implements Initializable {
         switcher.switchView("manager/Dashboard.fxml", event);
 
     }
-    public ObservableList<Label> labels = FXCollections.observableArrayList();
+    public ObservableList<Label> labelsMatched = FXCollections.observableArrayList();
+    public ObservableList<Label> labelsLost = FXCollections.observableArrayList();
+    public ObservableList<Label> labelsFound = FXCollections.observableArrayList();
     //Fills the matchedlabellist with all matched labels from the database
 
     private void fillMatchedLabelList() throws SQLException {
         ResultSet matchedResult = DatabaseFunctions.getMatchedLabel();
         while (matchedResult.next()) {
-            Label matchedLabel = new Label(matchedResult.getString("label"));
-            labels.add(matchedLabel);
+            Label matchedLabel = new Label(matchedResult.getString("suitcase_label"));
+            labelsMatched.add(matchedLabel);
         }
 
-        matchedView.setItems(labels);
+        matchedView.setItems(labelsMatched);
     }
     //Fills the lostlabellist with all lost labels from the database
 
     private void fillLostLabelList() throws SQLException {
         ResultSet lostResult = DatabaseFunctions.getLostLabel();
         while (lostResult.next()) {
-            Label lostLabel = new Label(lostResult.getString("label"));
-            labels.add(lostLabel);
+            Label lostLabel = new Label(lostResult.getString("suitcase_label"));
+            labelsLost.add(lostLabel);
         }
 
-        lostView.setItems(labels);
+        lostView.setItems(labelsLost);
     }
     //Fills the foundlabellist with all found labels from the database
 
     private void fillFoundLabelList() throws SQLException {
         ResultSet foundResult = DatabaseFunctions.getFoundLabel();
         while (foundResult.next()) {
-            Label foundLabel = new Label(foundResult.getString("label"));
-            labels.add(foundLabel);
+            Label foundLabel = new Label(foundResult.getString("suitcase_label"));
+            labelsFound.add(foundLabel);
         }
 
-        foundView.setItems(labels);
+        foundView.setItems(labelsFound);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        
         try {
-            ResultSet result = DatabaseFunctions.getBaggageBySuitcasetype(0);
-
-            while (result.next()) {
-                System.out.println(result.getString("suitcase_label"));
-            }
-
+            fillLostLabelList();
+            fillFoundLabelList();
+            fillMatchedLabelList();
+                    
         } catch (SQLException ex) {
             Logger.getLogger(StatsController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
     }
 
 }
