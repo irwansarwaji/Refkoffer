@@ -92,6 +92,8 @@ public class Baggage {
      * @param suitcaseOther String
      * @param suitcaseNotes String
      */
+    
+    
     public Baggage(String label, String firstName, String lastName, String address, String zip, String country, String phone, String email, int suitcaseType, String suitcaseModel, String suitcaseBrand, String suitcaseColour, String suitcaseNotes) {
         this.label = label;
         this.firstName = firstName;
@@ -126,6 +128,10 @@ public class Baggage {
         
     }
     
+      public Baggage(String address){
+          //test voor listview
+          this.address = address;
+      }
 
     public int getId() {
         return id;
@@ -276,5 +282,13 @@ public class Baggage {
     public void setAdditionalContactInfo(String additionalContactInfo) {
         this.additionalContactInfo = additionalContactInfo;
     }
-
+    
+    
+    @Override
+    public String toString(){
+        return label + email;
+        
+    }
+    
+    
 }

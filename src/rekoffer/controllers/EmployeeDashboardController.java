@@ -28,7 +28,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import rekoffer.models.Matchcase;
-import rekoffer.models.User;
 import static rekoffer.services.DatabaseFunctions.disconnect;
 import rekoffer.services.Session;
 import rekoffer.views.ViewSwitcher;
@@ -46,33 +45,17 @@ public class EmployeeDashboardController implements Initializable {
     List<Baggage> filterBaggageList;
     List<Matchcase> matchesList;
 
-    @FXML
-    private TableColumn<?, ?> firstname;
-    @FXML
-    private TableColumn<?, ?> lastname;
-    @FXML
-    private TableColumn<?, ?> email;
-    @FXML
-    private TableColumn<?, ?> suitcaselabel;
     private TableColumn<?, ?> suitcasecolor;
-    @FXML
-    private TableColumn<?, ?> suitcasetype;
-    @FXML
-    private TableColumn<?, ?> suitcasebrand;
-    @FXML
-    private TableColumn<?, ?> status;
 
     @FXML
     public Label user_name;
     public TextField filter_text;
     public ListView userlist1;
-    
-        public ObservableList<Baggage> baggages = FXCollections.observableArrayList();
-
 
     /**
      * Initializes the controller class.
      */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -83,33 +66,17 @@ public class EmployeeDashboardController implements Initializable {
 
         //Eerste wat ik doe is een nieuwe lijst ophalen met ALLLE KOFFERS UIT DE DATABASE
         try {
+            // fillList2();
             fillList();
-            fillList2();
         } catch (SQLException ex) {
             Logger.getLogger(EmployeeDashboardController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
-     private void fillList2() throws SQLException {
-      //switcher.switchView("employee/RegisterLost.fxml", event);
-        ResultSet rs = DatabaseFunctions.getAllBaggage();
-
-        //Voor iedere rij die wij uit de database halen doe :
-        while (rs.next()) {
-
-            //Maak een baggage object aan en vul hem met mooie attributen.
-
-            Baggage baggage1 = new Baggage(rs.getInt("id"), rs.getString("suitcase_label"), rs.getString("country"),rs.getInt("suitcase_type"),rs.getString("suitcase_color"),rs.getString("first_name"),rs.getString("last_name"), rs.getString("email"), rs.getString("suitcase_model"), rs.getString("suitcase_brand"),rs.getString("airport_site"));
-           
-            //Nu ga ik deze toevoegen aan mijn lijstje
-            baggages.add(baggage1);
-            
-        }
-userlist1.setItems((ObservableList) baggages);
-     
-     }
 
     private void fillList() throws SQLException {
+        
+
         //switcher.switchView("employee/RegisterLost.fxml", event);
         ResultSet rs = DatabaseFunctions.getAllBaggage();
 
@@ -117,13 +84,13 @@ userlist1.setItems((ObservableList) baggages);
         while (rs.next()) {
 
             //Maak een baggage object aan en vul hem met mooie attributen.
+            Baggage baggage = new Baggage(rs.getInt("id"), rs.getString("suitcase_label"), rs.getString("country"), rs.getInt("suitcase_type"), rs.getString("suitcase_color"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("email"), rs.getString("suitcase_model"), rs.getString("suitcase_brand"), rs.getString("airport_site"));
 
-            Baggage baggage = new Baggage(rs.getInt("id"), rs.getString("suitcase_label"), rs.getString("country"),rs.getInt("suitcase_type"),rs.getString("suitcase_color"),rs.getString("first_name"),rs.getString("last_name"), rs.getString("email"), rs.getString("suitcase_model"), rs.getString("suitcase_brand"),rs.getString("airport_site"));
-           
             //Nu ga ik deze toevoegen aan mijn lijstje
             baggageList.add(baggage);
-            
+
         }
+        
         //Nu heb ik een lijst met alle koffers uit de database!
     }
 
@@ -149,34 +116,32 @@ userlist1.setItems((ObservableList) baggages);
             // * Sterretje is een soort wildcard van sql  %LIKE%
 
             System.out.println(bag.getSuitcaseModel());
-            if((bag.getLastName().matches("(?i)"+ filter +".*"))|| 
-                bag.getFirstName().matches("(?i)"+ filter +".*")|| 
-                bag.getEmail().matches("(?i)" + filter + ".*")||
-                bag.getLabel().matches("(?i)"+filter+".*")||
-                bag.getSuitcaseModel().matches("(?i)"+filter+".*")||
-                bag.getSuitcaseBrand().matches("(?i)"+filter+".*")||
-                bag.getSuitcaseColour().matches("(?i)"+filter+".*"))
-                    
-                    
-            {
+            if ((bag.getLastName().matches("(?i)" + filter + ".*"))
+                    || bag.getFirstName().matches("(?i)" + filter + ".*")
+                    || bag.getEmail().matches("(?i)" + filter + ".*")
+                    || bag.getLabel().matches("(?i)" + filter + ".*")
+                    || bag.getSuitcaseModel().matches("(?i)" + filter + ".*")
+                    || bag.getSuitcaseBrand().matches("(?i)" + filter + ".*")
+                    || bag.getSuitcaseColour().matches("(?i)" + filter + ".*")) {
 
                 //Ik kijk nu alleen of de naam overeen komt, maar dat kan dus ook meer worden met een || in mijn IF functie
                 //Voeg de koffer maar toe aan de tijdelijke lijst met resultaten
                 filterBaggageList.add(bag);
+
             }
+
             //Ik vergelijk gewoon met de lijst die we al hebben ,geen nieuwe requests naar de database ! awesome!
             //Probeer de first_name van een van de koffer velden in de database te veranderen
             //Kijk of je 2x rick krijgt als er 2 koffers van rick zijn
         }
 
         //Print het maar lekker uit
-        for(Baggage bag : filterBaggageList)
-        {
-            //System.out.println(bag.getLabel()+bag.getCountry()+bag.getSuitcaseType()+bag.getSuitcaseColour()+bag.getFirstName()+bag.getLastName()+bag.getEmail()+bag.getSuitcaseModel()+bag.getSuitcaseBrand()+bag.getSuitcaseColour());
+        for (Baggage bag : filterBaggageList) {
 
+            System.out.println(bag.getLabel()+bag.getCountry()+bag.getSuitcaseType()+bag.getSuitcaseColour()+bag.getFirstName()+bag.getLastName()+bag.getEmail()+bag.getSuitcaseModel()+bag.getSuitcaseBrand()+bag.getSuitcaseColour());
         }
 
-        //Ik kan nu de lijst met alle koffers die kloppen met de zoekterm (filterBaggageList) meegeven aan een methode die mijn table laad met een lijst
+        //Ik kan nu de lijst met alle koffers die kloppen met de zoekterm (filterBaggageList) meegeven aan een methode die mijn table laad met een lijst 
     }
 
     @FXML
@@ -199,12 +164,16 @@ userlist1.setItems((ObservableList) baggages);
 
                     //Dit ziet er raar uit maar.
                     //Ik kijk hier of de labels hetzelfde zijn (niet hoofdlettergevoelig). Daarna kijk ik of ze niet dezelfde ID hebben.
-                    //Omdat hij elke koffer met elke koffer vergelijkt kan hij dus ook met zichzelf vergelijken. 
+                    //Omdat hij elke koffer met elke koffer vergelijkt kan hij dus ook met zichzelf vergelijken. ||
                     //De ID is hetzelfde als hij zichzelf is. Dus vandaar deze preventie
                     //De laatste check is onnodig en kan je weghalen zodra je het begrijpt... het kijkt of de types niet hetzelfde zijn want een verloren koffer kan niet matchen met een verloren koffer.
                     //Dit wordt al voorkomen bij de IF van de eerste loop : regel 169
                     //Maar dit kan eventueel handig zijn als sommige vermissingen 2 keer geregistreerd staan.
-                    if (bag.getLabel().equalsIgnoreCase(compareBag.getLabel()) && bag.getId() != compareBag.getId() && bag.getSuitcaseType() != compareBag.getSuitcaseType()) {
+                    if (bag.getLabel().equalsIgnoreCase(compareBag.getLabel()) 
+                            
+                            
+                            && bag.getId() != compareBag.getId() && bag.getSuitcaseType() != compareBag.getSuitcaseType()
+                            ) {
                         //Maak een match aan met de matchende registraties
                         Matchcase match = new Matchcase(bag, compareBag);
                         //Voeg hem maar toe aan de lijst
@@ -216,7 +185,7 @@ userlist1.setItems((ObservableList) baggages);
         }
 
         for (Matchcase match : matchesList) {
-            System.out.println(match.toString());   
+            System.out.println(match.toString());
         }
     }
 
@@ -247,7 +216,23 @@ userlist1.setItems((ObservableList) baggages);
 
     @FXML
     private void refreshAction(ActionEvent event) throws SQLException, IOException {
+      
+        ObservableList<Baggage> baggageList2 = FXCollections.observableArrayList();
         
+        ResultSet rs = DatabaseFunctions.getAllBaggage();
 
-}}
+        //Voor iedere rij die wij uit de database halen doe :
+        while (rs.next()) {
 
+            //Maak een baggage object aan en vul hem met mooie attributen.
+            Baggage baggage = new Baggage(rs.getInt("id"), rs.getString("suitcase_label"), rs.getString("country"), rs.getInt("suitcase_type"), rs.getString("suitcase_color"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("email"), rs.getString("suitcase_model"), rs.getString("suitcase_brand"), rs.getString("airport_site"));
+
+            //Nu ga ik deze toevoegen aan mijn lijstje
+            baggageList2.add(baggage);
+
+        }
+        userlist1.setItems(baggageList2);
+
+        //Nu heb ik een lijst met alle koffers uit de database!
+    }
+}
