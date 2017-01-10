@@ -35,4 +35,10 @@ public class Statements {
     public static String setPassword = "UPDATE users SET password = ? WHERE id = ?;";
     public static String createLostBaggage = "INSERT INTO baggage (first_name, last_name, address, zip, country, phone, email, suitcase_type, suitcase_label, suitcase_brand, suitcase_color, suitcase_other, suitcase_model, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
     public static String setEmailByEmail = "UPDATE users SET email = ? WHERE email = ?;";
+    public static String getAllEmails = "SELECT email FROM users;";
+    public static String getAllFirstnames = "SELECT first_name FROM users;";
+    public static String getAllLastnames = "SELECT last_name FROM users;";
+    public static String getAllPhonenumbers = "SELECT phone FROM users;";
+            
+    
 }
