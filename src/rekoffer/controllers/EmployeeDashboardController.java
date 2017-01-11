@@ -42,8 +42,8 @@ public class EmployeeDashboardController implements Initializable {
     boolean savedBaggage;
     ViewSwitcher switcher = new ViewSwitcher();
     List<Baggage> baggageList = new ArrayList<>();
-    List<Baggage> filterBaggageList;
-    List<Matchcase> matchesList;
+    public ObservableList<Baggage> filterBaggageList = FXCollections.observableArrayList();
+   public ObservableList<Matchcase> matchesList = FXCollections.observableArrayList();
 
     private TableColumn<?, ?> suitcasecolor;
 
@@ -153,7 +153,8 @@ public class EmployeeDashboardController implements Initializable {
         //Maak een neiwue lijst aan om de matches op te slaan.
         //Ik heb hier snel even een lokale class gemaakt genaamd : Matchase. Hier kan ik een match opslaan, en makkelijk zien wie koffer 1 en koffer 2 is.
         //Welke match bestat en welke de gevonden en verloren koffer registratie is. is zo makkelijk te zien.
-        matchesList = new ArrayList<>();
+       //matchesList = new ArrayList<>();
+       
 
         //Loop door de baggagelijst die wij al hebben.
         for (Baggage bag : baggageList) {
@@ -190,7 +191,11 @@ public class EmployeeDashboardController implements Initializable {
 
         for (Matchcase match : matchesList) {
             System.out.println(match.toString());
+           // userlist1.setItems(matchesList);
         }
+        
+        userlist1.setItems(matchesList);
+          
     }
 
     void setSavedStatus(boolean savedBaggage) {
@@ -221,7 +226,7 @@ public class EmployeeDashboardController implements Initializable {
     @FXML
     private void refreshAction(ActionEvent event) throws SQLException, IOException {
       
-        ObservableList<Baggage> baggageList2 = FXCollections.observableArrayList();
+        ObservableList<Baggage> baggageList = FXCollections.observableArrayList();
         
         ResultSet rs = DatabaseFunctions.getAllBaggage();
 
@@ -232,10 +237,10 @@ public class EmployeeDashboardController implements Initializable {
             Baggage baggage = new Baggage(rs.getInt("id"), rs.getString("suitcase_label"), rs.getString("country"), rs.getInt("suitcase_type"), rs.getString("suitcase_color"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("email"), rs.getString("suitcase_model"), rs.getString("suitcase_brand"), rs.getString("airport_site"));
 
             //Nu ga ik deze toevoegen aan mijn lijstje
-            baggageList2.add(baggage);
+            baggageList.add(baggage);
 
         }
-        userlist1.setItems(baggageList2);
+        userlist1.setItems(baggageList);
 
         //Nu heb ik een lijst met alle koffers uit de database!
     }
