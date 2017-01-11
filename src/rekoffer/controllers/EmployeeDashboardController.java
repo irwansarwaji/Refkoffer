@@ -148,6 +148,12 @@ public class EmployeeDashboardController implements Initializable {
     }
 
     @FXML
+    private void removeBaggage(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        switcher.switchView("employee/RemoveBaggage.fxml", event);
+    }
+    
+    @FXML
     private void matchAction(ActionEvent event) throws SQLException, IOException {
     ObservableList<Matchcase> matchesList = FXCollections.observableArrayList();
         //Maak een neiwue lijst aan om de matches op te slaan.

@@ -286,7 +286,12 @@ public class Baggage {
     
     @Override
     public String toString(){
-        return label + firstName + lastName;
+        StringBuilder print = new StringBuilder();
+        print.append(label);
+        print.append(firstName);
+        print.append(lastName);
+        print.append(email);
+        return print.toString();
         
     }
     
