@@ -103,11 +103,12 @@ public class EmployeeDashboardController implements Initializable {
      */
     @FXML
     private void searchAction(ActionEvent event) throws SQLException, IOException {
+        ObservableList<Baggage> filterBaggageList = FXCollections.observableArrayList();
         //Filter wordt de value waar we op zoeken (wat je intypt)
         String filter = filter_text.getText();
 
         //Een nieuwe lijst voor een nieuwe zoekpoging
-        filterBaggageList = new ArrayList<>();
+        //filterBaggageList = new ArrayList<>();
 
         for (Baggage bag : baggageList) {
             //Ik loop nu door de lijst met koffers
@@ -136,9 +137,11 @@ public class EmployeeDashboardController implements Initializable {
         }
 
         //Print het maar lekker uit
+        
         for (Baggage bag : filterBaggageList) {
+             userlist1.setItems(filterBaggageList);
 
-            System.out.println(bag.getLabel()+bag.getCountry()+bag.getSuitcaseType()+bag.getSuitcaseColour()+bag.getFirstName()+bag.getLastName()+bag.getEmail()+bag.getSuitcaseModel()+bag.getSuitcaseBrand()+bag.getSuitcaseColour());
+            //System.out.println(bag.getLabel()+bag.getCountry()+bag.getSuitcaseType()+bag.getSuitcaseColour()+bag.getFirstName()+bag.getLastName()+bag.getEmail()+bag.getSuitcaseModel()+bag.getSuitcaseBrand()+bag.getSuitcaseColour());
         }
 
         //Ik kan nu de lijst met alle koffers die kloppen met de zoekterm (filterBaggageList) meegeven aan een methode die mijn table laad met een lijst 
