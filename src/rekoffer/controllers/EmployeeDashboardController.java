@@ -84,7 +84,7 @@ public class EmployeeDashboardController implements Initializable {
         while (rs.next()) {
 
             //Maak een baggage object aan en vul hem met mooie attributen.
-            Baggage baggage = new Baggage(rs.getInt("id"), rs.getString("suitcase_label"), rs.getString("country"), rs.getInt("suitcase_type"), rs.getString("suitcase_color"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("email"), rs.getString("suitcase_model"), rs.getString("suitcase_brand"), rs.getString("airport_site"));
+            Baggage baggage = new Baggage(rs.getInt("id"), rs.getString("suitcase_label"), rs.getString("country"), rs.getInt("suitcase_type"), rs.getString("suitcase_color"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("email"), rs.getString("suitcase_model"), rs.getString("suitcase_brand"), rs.getString("airport_site"), rs.getString("address"), rs.getString("zip"));
 
             //Nu ga ik deze toevoegen aan mijn lijstje
             baggageList.add(baggage);
@@ -234,7 +234,7 @@ public class EmployeeDashboardController implements Initializable {
         while (rs.next()) {
 
             //Maak een baggage object aan en vul hem met mooie attributen.
-            Baggage baggage = new Baggage(rs.getInt("id"), rs.getString("suitcase_label"), rs.getString("country"), rs.getInt("suitcase_type"), rs.getString("suitcase_color"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("email"), rs.getString("suitcase_model"), rs.getString("suitcase_brand"), rs.getString("airport_site"));
+            Baggage baggage = new Baggage(rs.getInt("id"), rs.getString("suitcase_label"), rs.getString("country"), rs.getInt("suitcase_type"), rs.getString("suitcase_color"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("email"), rs.getString("suitcase_model"), rs.getString("suitcase_brand"), rs.getString("airport_site"), rs.getString("address"), rs.getString("zip"));
 
             //Nu ga ik deze toevoegen aan mijn lijstje
             baggageList.add(baggage);
