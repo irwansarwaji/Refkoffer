@@ -169,11 +169,12 @@ public class EmployeeDashboardController implements Initializable {
                     //De laatste check is onnodig en kan je weghalen zodra je het begrijpt... het kijkt of de types niet hetzelfde zijn want een verloren koffer kan niet matchen met een verloren koffer.
                     //Dit wordt al voorkomen bij de IF van de eerste loop : regel 169
                     //Maar dit kan eventueel handig zijn als sommige vermissingen 2 keer geregistreerd staan.
-                    if (bag.getLabel().equalsIgnoreCase(compareBag.getLabel()) 
+                    if (bag.getLabel().equalsIgnoreCase(compareBag.getLabel()) ||
+                            (bag.getSuitcaseColour().equalsIgnoreCase(compareBag.getSuitcaseColour()) 
                             
                             
                             && bag.getId() != compareBag.getId() && bag.getSuitcaseType() != compareBag.getSuitcaseType()
-                            ) {
+                            )  ) {
                         //Maak een match aan met de matchende registraties
                         Matchcase match = new Matchcase(bag, compareBag);
                         //Voeg hem maar toe aan de lijst
