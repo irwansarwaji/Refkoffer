@@ -286,7 +286,7 @@ public class Baggage {
     
     @Override
     public String toString(){
-        return label + email;
+        return label + firstName + lastName;
         
     }
     

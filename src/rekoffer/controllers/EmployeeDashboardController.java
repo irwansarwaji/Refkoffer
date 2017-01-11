@@ -149,7 +149,7 @@ public class EmployeeDashboardController implements Initializable {
 
     @FXML
     private void matchAction(ActionEvent event) throws SQLException, IOException {
-
+    ObservableList<Matchcase> matchesList = FXCollections.observableArrayList();
         //Maak een neiwue lijst aan om de matches op te slaan.
         //Ik heb hier snel even een lokale class gemaakt genaamd : Matchase. Hier kan ik een match opslaan, en makkelijk zien wie koffer 1 en koffer 2 is.
         //Welke match bestat en welke de gevonden en verloren koffer registratie is. is zo makkelijk te zien.
