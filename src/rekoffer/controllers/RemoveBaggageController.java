@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import rekoffer.services.DatabaseFunctions;
+import rekoffer.services.Session;
 import rekoffer.views.ViewSwitcher;
 
 /**
@@ -29,15 +30,16 @@ public class RemoveBaggageController implements Initializable {
     ViewSwitcher switcher = new ViewSwitcher();
 
     @FXML
-    public TextField Label;
-    public TextField confirmLabel;
-    public Label warningLabel;
+    public TextField Label, confirmLabel;
+    public Label warningLabel, user_name;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        user_name.setText(Session.getSessionUser().getFirstName() + ", " + Session.getSessionUser().getLastName());
 
     }
 
