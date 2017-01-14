@@ -10,6 +10,9 @@ package rekoffer.services;
  * @author Damon
  */
 public class Statements {
+    public static String getMatchedLabels = "SELECT suitcase_label FROM baggage WHERE suitcase_type = 2";
+    public static String getLostLabels = "SELECT suitcase_label FROM baggage WHERE suitcase_type = 1";
+    public static String getFoundLabels = "SELECT suitcase_label FROM baggage WHERE suitcase_type = 1";
     public static String getUser = "SELECT * from users WHERE id = ?;";
     public static String getAllUsers = "SELECT * FROM USERS;";
     public static String getUserByEmail = "SELECT * from users WHERE email = ?;";
@@ -31,5 +34,5 @@ public class Statements {
     public static String getAllBaggage = "SELECT * from baggage;";
     public static String setPassword = "UPDATE users SET password = ? WHERE id = ?;";
     public static String createLostBaggage = "INSERT INTO baggage (first_name, last_name, address, zip, country, phone, email, suitcase_type, suitcase_label, suitcase_brand, suitcase_color, suitcase_other, suitcase_model, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
-
+    public static String setEmailByEmail = "UPDATE users SET email = ? WHERE email = ?;";
 }

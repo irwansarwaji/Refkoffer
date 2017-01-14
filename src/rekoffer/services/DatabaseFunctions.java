@@ -271,11 +271,37 @@ public class DatabaseFunctions {
         preparedStatement.executeUpdate();
     }
     
+    public static void setNewEmailByEmail (String oldMail, String newMail) throws SQLException{
+        connect();
+        preparedStatement = con.prepareStatement(setEmailByEmail);
+        preparedStatement.setString(1, newMail);
+        preparedStatement.setString(2, oldMail);
+        preparedStatement.executeUpdate();
+    }
+    
     public static ResultSet getAllBaggage() throws SQLException{
         connect();
         preparedStatement = con.prepareStatement(getAllBaggage);
         res  = preparedStatement.executeQuery();
         
+        return res;
+    }
+      public static ResultSet getLostLabel() throws SQLException{
+        connect();
+        preparedStatement = con.prepareStatement(getLostLabels);
+        res = preparedStatement.executeQuery();
+        return res;
+    }
+      public static ResultSet getFoundLabel() throws SQLException{
+        connect();
+        preparedStatement = con.prepareStatement(getFoundLabels);
+        res = preparedStatement.executeQuery();
+        return res;
+    }
+      public static ResultSet getMatchedLabel() throws SQLException{
+        connect();
+        preparedStatement = con.prepareStatement(getMatchedLabels);
+        res = preparedStatement.executeQuery();
         return res;
     }
 }

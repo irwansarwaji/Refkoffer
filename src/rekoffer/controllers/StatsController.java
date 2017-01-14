@@ -11,9 +11,13 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ListView;
+import rekoffer.models.Label;
 import rekoffer.services.DatabaseFunctions;
 import rekoffer.views.ViewSwitcher;
 
@@ -26,27 +30,67 @@ public class StatsController implements Initializable {
 
     /**
      * Switches view from stats to managerdashboard
+     *
      * @param event
-     * @throws IOException 
+     * @throws IOException
      */
+    @FXML
+    public ListView matchedView;
+    public ListView lostView;
+    public ListView foundView;
+
+    //View switches to manager dashboard
     @FXML
     private void returnDashboard(ActionEvent event) throws IOException {
         ViewSwitcher switcher = new ViewSwitcher();
         switcher.switchView("manager/Dashboard.fxml", event);
 
-  
+    }
+    public ObservableList<Label> labels = FXCollections.observableArrayList();
+    //Fills the matchedlabellist with all matched labels from the database
+
+    private void fillMatchedLabelList() throws SQLException {
+        ResultSet matchedResult = DatabaseFunctions.getMatchedLabel();
+        while (matchedResult.next()) {
+            Label matchedLabel = new Label(matchedResult.getString("label"));
+            labels.add(matchedLabel);
+        }
+
+        matchedView.setItems(labels);
+    }
+    //Fills the lostlabellist with all lost labels from the database
+
+    private void fillLostLabelList() throws SQLException {
+        ResultSet lostResult = DatabaseFunctions.getLostLabel();
+        while (lostResult.next()) {
+            Label lostLabel = new Label(lostResult.getString("label"));
+            labels.add(lostLabel);
+        }
+
+        lostView.setItems(labels);
+    }
+    //Fills the foundlabellist with all found labels from the database
+
+    private void fillFoundLabelList() throws SQLException {
+        ResultSet foundResult = DatabaseFunctions.getFoundLabel();
+        while (foundResult.next()) {
+            Label foundLabel = new Label(foundResult.getString("label"));
+            labels.add(foundLabel);
+        }
+
+        foundView.setItems(labels);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+
         try {
             ResultSet result = DatabaseFunctions.getBaggageBySuitcasetype(0);
-            
-            while(result.next()){
+
+            while (result.next()) {
                 System.out.println(result.getString("suitcase_label"));
             }
-                
+
         } catch (SQLException ex) {
             Logger.getLogger(StatsController.class.getName()).log(Level.SEVERE, null, ex);
         }

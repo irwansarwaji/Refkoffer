@@ -70,6 +70,12 @@ public class ManagerDashboardController implements Initializable {
         switcher.switchView("Login.fxml", event);
     }
     
+    @FXML
+    private void resetEmailButton(ActionEvent event) throws IOException{
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        switcher.switchView("manager/ResetEmail.fxml", event);
+    }
+    
     //Switch view naar user password resetting
     @FXML
     private void resetPasswordButton(ActionEvent event) throws SQLException, IOException {
