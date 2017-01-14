@@ -1,4 +1,3 @@
-
 package rekoffer.services;
 
 import java.sql.PreparedStatement;
@@ -18,7 +17,6 @@ public class DatabaseFunctions {
     public static PreparedStatement preparedStatement;
     public static ResultSet res;
 
-
     //connecten met de database
     public static void connect() {
         con = getConnection();
@@ -28,9 +26,8 @@ public class DatabaseFunctions {
     //disconnecten van de database
     public static void disconnect() throws SQLException {
         con.close();
-        if(res != null)
-        {
-          res.close();
+        if (res != null) {
+            res.close();
         }
         preparedStatement.close();
         System.out.println("Database disconnected");
@@ -51,13 +48,13 @@ public class DatabaseFunctions {
 
         return res;
     }
-    
+
     /**
-     * 
+     *
      * @return List of all non manager users
-     * @throws SQLException 
+     * @throws SQLException
      */
-    public static ResultSet getAllUsers() throws SQLException{
+    public static ResultSet getAllUsers() throws SQLException {
         connect();
         preparedStatement = con.prepareStatement(getAllUsers);
         res = preparedStatement.executeQuery();
@@ -65,8 +62,11 @@ public class DatabaseFunctions {
     }
 
     /**
-     * Saves a lost suitcase
-     * @param baggage CONTAINS
+     * Saves a lost suitcase <<<<<<< HEAD
+     *
+     * @param baggage CONTAINS =======
+     *
+     * >>>>>>> irwan_search
      * @param label
      * @param owner
      * @param firstName
@@ -80,10 +80,9 @@ public class DatabaseFunctions {
      * @param other
      * @param model
      * @param brand
-     * @throws SQLException 
+     * @throws SQLException
      */
-    public static void createNewLostBaggage(Baggage baggage) throws SQLException
-    {
+    public static void createNewLostBaggage(Baggage baggage) throws SQLException {
         connect();
         preparedStatement = con.prepareStatement(createLostBaggage);
         preparedStatement.setString(1, baggage.getFirstName());
@@ -101,9 +100,10 @@ public class DatabaseFunctions {
         preparedStatement.setString(13, baggage.getSuitcaseModel());
         preparedStatement.executeUpdate();
     }
-    
-     /**
+
+    /**
      * Saves a lost suitcase
+     *
      * @param baggage CONTAINS
      * @param label
      * @param firstName
@@ -114,10 +114,9 @@ public class DatabaseFunctions {
      * @param brand
      * @param airport_site
      * @param airport_origin
-     * @throws SQLException 
+     * @throws SQLException
      */
-    public static void createNewFoundBaggage(Baggage baggage) throws SQLException
-    {
+    public static void createNewFoundBaggage(Baggage baggage) throws SQLException {
         connect();
         preparedStatement = con.prepareStatement(createFoundBaggage);
         preparedStatement.setString(1, baggage.getFirstName());
@@ -132,7 +131,7 @@ public class DatabaseFunctions {
         preparedStatement.setString(10, baggage.getAirportOrigin());
         preparedStatement.executeUpdate();
     }
-    
+
     /**
      *
      * @param userEmail - email van de gebruiker
@@ -150,10 +149,10 @@ public class DatabaseFunctions {
     }
 
     /**
-     * 
+     *
      * @param label - Label van de koffer
      * @return alle koffers met ingevoerd label
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static ResultSet getBaggageByLabel(String label) throws SQLException {
         connect();
@@ -172,7 +171,7 @@ public class DatabaseFunctions {
 
         return res;
     }
-    
+
     public static ResultSet getBaggageByLastname(String lastname) throws SQLException {
         connect();
         preparedStatement = con.prepareStatement(getBaggageByLastname);
@@ -259,10 +258,10 @@ public class DatabaseFunctions {
      * @param userEmail - email van de nieuwe gebruiker
      * @param newPassword - wachtwoord van de nieuwe gebruiker. Wachtwoord wordt
      * encrypted
-     * 
-     * @param repeatPassword - wachtwoord van de nieuwe gebruiker om te check of het wachtwoord
-     * goed is getypt
-     * 
+     *
+     * @param repeatPassword - wachtwoord van de nieuwe gebruiker om te check of
+     * het wachtwoord goed is getypt
+     *
      * @throws SQLException
      */
     public static void createNewUser(String userEmail, String newPassword, String repeatPassword, String firstName, String lastName, String phoneNumber) throws SQLException {
@@ -276,25 +275,24 @@ public class DatabaseFunctions {
         preparedStatement.setString(5, phoneNumber);
         preparedStatement.executeUpdate();
     }
-    
-    
+
     //needs editing. Want to get an INT from this
-    public static ResultSet getID(String email) throws SQLException{
+    public static ResultSet getID(String email) throws SQLException {
         preparedStatement = con.prepareStatement(getID);
         preparedStatement.setString(1, email);
-        res  = preparedStatement.executeQuery();
-        
+        res = preparedStatement.executeQuery();
+
         return res;
     }
-    
-    
+
     /**
-     * 
-     * @param userEmail - Emailadres van de gebruiker waarvan het mailadres wordt verandert
+     *
+     * @param userEmail - Emailadres van de gebruiker waarvan het mailadres
+     * wordt verandert
      * @param newPassword - Nieuw wachtwoord voor de gebruiker
-     * @throws SQLException 
+     * @throws SQLException
      */
-    public static void setNewPasswordByEmail(String userEmail, String newPassword) throws SQLException{
+    public static void setNewPasswordByEmail(String userEmail, String newPassword) throws SQLException {
         connect();
         String cryptedPassword = Authenticate.createPassword(newPassword);
         preparedStatement = con.prepareStatement(setPasswordByEmail);
@@ -302,38 +300,51 @@ public class DatabaseFunctions {
         preparedStatement.setString(2, userEmail);
         preparedStatement.executeUpdate();
     }
-    
-    public static void setNewEmailByEmail (String oldMail, String newMail) throws SQLException{
+
+    public static void setNewEmailByEmail(String oldMail, String newMail) throws SQLException {
         connect();
         preparedStatement = con.prepareStatement(setEmailByEmail);
         preparedStatement.setString(1, newMail);
         preparedStatement.setString(2, oldMail);
         preparedStatement.executeUpdate();
     }
-    
-    public static ResultSet getAllBaggage() throws SQLException{
+
+    public static ResultSet getAllBaggage() throws SQLException {
+
         connect();
         preparedStatement = con.prepareStatement(getAllBaggage);
-        res  = preparedStatement.executeQuery();
-        
+        res = preparedStatement.executeQuery();
+
         return res;
     }
-      public static ResultSet getLostLabel() throws SQLException{
+
+    public static ResultSet getLostLabel() throws SQLException {
         connect();
         preparedStatement = con.prepareStatement(getLostLabels);
         res = preparedStatement.executeQuery();
         return res;
     }
-      public static ResultSet getFoundLabel() throws SQLException{
+
+    public static ResultSet getFoundLabel() throws SQLException {
         connect();
         preparedStatement = con.prepareStatement(getFoundLabels);
         res = preparedStatement.executeQuery();
         return res;
     }
-      public static ResultSet getMatchedLabel() throws SQLException{
+
+    public static ResultSet getMatchedLabel() throws SQLException {
         connect();
         preparedStatement = con.prepareStatement(getMatchedLabels);
         res = preparedStatement.executeQuery();
         return res;
     }
+
+    public static void removeBaggage(String suitcase_label) throws SQLException {
+        connect();
+        preparedStatement = con.prepareStatement(removeBaggage);
+        preparedStatement.setString(1, suitcase_label);
+        preparedStatement.executeUpdate();
+
+    }
+
 }

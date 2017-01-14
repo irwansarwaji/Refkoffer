@@ -107,7 +107,7 @@ public class Baggage {
         this.suitcaseColour = suitcaseColour;
         this.suitcaseNotes = suitcaseNotes;
     }
-    
+
       /**
      * Constructor for registering found baggage
      *
@@ -136,7 +136,7 @@ public class Baggage {
     }
     
 
-      public Baggage(int id, String label, String country, int suitcaseType, String suitcaseColour, String firstName, String lastName, String email, String suitcaseModel, String suitcaseBrand, String airportSite) {
+    public Baggage(int id, String label, String country, int suitcaseType, String suitcaseColour, String firstName, String lastName, String email, String suitcaseModel, String suitcaseBrand, String airportSite, String address, String zip) {
         //Korte constructor voor Irwan, Moet later worden vervangen door een complete constructor met alle attributen.
         this.id = id;
         this.label = label;
@@ -149,10 +149,10 @@ public class Baggage {
         this.airportSite = airportSite;
         this.suitcaseModel = suitcaseModel;
         this.suitcaseBrand = suitcaseBrand;
+        this.address = address;
+        this.zip = zip;
 
-        
     }
-    
 
     public int getId() {
         return id;
@@ -217,8 +217,6 @@ public class Baggage {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    
-    
 
     public String getEmail() {
         return email;
@@ -302,6 +300,13 @@ public class Baggage {
 
     public void setAdditionalContactInfo(String additionalContactInfo) {
         this.additionalContactInfo = additionalContactInfo;
+    }
+
+    @Override
+    public String toString() {
+
+        return String.format("%20s%20s%20s%20s%20s%20s", label, lastName, firstName, address, zip, country);
+
     }
 
 }
