@@ -284,7 +284,7 @@ public class Baggage {
     
     @Override
     public String toString(){
-        return String.format("%20s%20s%20s%20s%20s%20s",  label, lastName,  firstName,  address, zip, country);
+        return String.format("%20s%20s%20s%20s%20s%20s", label, lastName,  firstName,  address, zip, country);
         
     }
     
