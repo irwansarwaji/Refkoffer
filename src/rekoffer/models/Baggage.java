@@ -108,6 +108,33 @@ public class Baggage {
         this.suitcaseNotes = suitcaseNotes;
     }
     
+      /**
+     * Constructor for registering found baggage
+     *
+     * @param label String
+     * @param firstName String
+     * @param lastName String
+     * @param suitcaseType int - lost(1) found(2)
+     * @param suitcaseModel String
+     * @param suitcaseBrand String
+     * @param suitcaseColour String
+     * @param suitcaseNotes String
+     * @param airportSite
+     * @param airportOrigin
+     */
+    public Baggage(String label, String firstName, String lastName, int suitcaseType, String suitcaseModel, String suitcaseBrand, String suitcaseColour, String suitcaseNotes, String airportSite, String airportOrigin) {
+        this.label = label;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.suitcaseType = suitcaseType;
+        this.suitcaseModel = suitcaseModel;
+        this.suitcaseBrand = suitcaseBrand;
+        this.suitcaseColour = suitcaseColour;
+        this.suitcaseNotes = suitcaseNotes;
+        this.airportSite = airportSite;
+        this.airportOrigin = airportOrigin;
+    }
+    
 
       public Baggage(int id, String label, String country, int suitcaseType, String suitcaseColour, String firstName, String lastName, String email, String suitcaseModel, String suitcaseBrand, String airportSite) {
         //Korte constructor voor Irwan, Moet later worden vervangen door een complete constructor met alle attributen.

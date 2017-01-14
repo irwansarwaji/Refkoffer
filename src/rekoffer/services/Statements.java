@@ -35,4 +35,5 @@ public class Statements {
     public static String setPassword = "UPDATE users SET password = ? WHERE id = ?;";
     public static String createLostBaggage = "INSERT INTO baggage (first_name, last_name, address, zip, country, phone, email, suitcase_type, suitcase_label, suitcase_brand, suitcase_color, suitcase_other, suitcase_model, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
     public static String setEmailByEmail = "UPDATE users SET email = ? WHERE email = ?;";
+    public static String createFoundBaggage = "INSERT INTO baggage (first_name, last_name, suitcase_type, suitcase_label, suitcase_brand, suitcase_color, suitcase_model, suitcase_other, airport_site, airport_origin, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
 }
