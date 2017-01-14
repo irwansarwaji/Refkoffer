@@ -37,5 +37,9 @@ public class Statements {
     public static String setEmailByEmail = "UPDATE users SET email = ? WHERE email = ?;";
     public static String createFoundBaggage = "INSERT INTO baggage (first_name, last_name, suitcase_type, suitcase_label, suitcase_brand, suitcase_color, suitcase_model, suitcase_other, airport_site, airport_origin, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
     public static String removeBaggage = "DELETE FROM baggage WHERE suitcase_label = ?;";
-
+    public static String getAllEmails = "SELECT email FROM users;";
+    public static String getAllFirstnames = "SELECT first_name FROM users;";
+    public static String getAllLastnames = "SELECT last_name FROM users;";
+    public static String getAllPhonenumbers = "SELECT phone FROM users;";
+            
 }

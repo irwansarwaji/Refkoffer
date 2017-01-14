@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +21,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-import rekoffer.models.User;
 import rekoffer.services.DatabaseFunctions;
 import rekoffer.views.ViewSwitcher;
 
@@ -33,13 +30,20 @@ import rekoffer.views.ViewSwitcher;
  * @author Jacco
  */
 public class ManagerDashboardController implements Initializable {
+
     ViewSwitcher switcher = new ViewSwitcher();
     @FXML
     public Label onlineUsers;
-    public ListView userlist;
-    
+    public ListView email;
+    public ListView firstName;
+    public ListView lastName;
+    public ListView phone;
+
     //Dit is geen user object list maar een makkelijke manier voor nu
-    public ObservableList<User> employees = FXCollections.observableArrayList();
+    public ObservableList<String> emails = FXCollections.observableArrayList();
+    public ObservableList<String> firstNames = FXCollections.observableArrayList();
+    public ObservableList<String> lastNames = FXCollections.observableArrayList();
+    public ObservableList<String> phones = FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class.
@@ -47,13 +51,15 @@ public class ManagerDashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            fillUserList();
+            fillEmailList();
+            fillFirstnameList();
+            fillLastnameList();
+            fillPhoneList();
         } catch (SQLException ex) {
             Logger.getLogger(ManagerDashboardController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    }
 
+    }
 
     //switch view naar gebruiker aanmaakscherm
     @FXML
@@ -69,41 +75,65 @@ public class ManagerDashboardController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         switcher.switchView("Login.fxml", event);
     }
-    
+
     @FXML
-    private void resetEmailButton(ActionEvent event) throws IOException{
+    private void resetEmailButton(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         switcher.switchView("manager/ResetEmail.fxml", event);
     }
-    
+
     //Switch view naar user password resetting
     @FXML
     private void resetPasswordButton(ActionEvent event) throws SQLException, IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         switcher.switchView("manager/ResetUserpassword.fxml", event);
     }
-    
-        //switch terug naar het vorige scherm
+
+    //switch terug naar het vorige scherm
     @FXML
     private void statsOverview(ActionEvent event) throws SQLException, IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         switcher.switchView("manager/stats.fxml", event);
     }
-    
-    //Fills the existing userlist (listview) with all employees from the database
-    private void fillUserList() throws SQLException
-    {
-       ResultSet result =  DatabaseFunctions.getAllUsers();
-       while(result.next())
-       {
-           //Ik maak er nu een lange lelijke string van voor het laten zien.
-           //Dit kan natuurlijk een mooie printF worden en misschien kan je er een mooi tabel van maken met headers boven aan om aantegeven dat het over een telefoonnummer gaat bijvoorbeeld
-           //Dit laat alleen medewerkers zien, geen manager accounts.
-           User employee = new User(result.getInt("id"), result.getString("email"),result.getString("first_name"), result.getString("last_name"), result.getString("phone"), result.getInt("type"));
-           employees.add(employee);
-       }
-       
-        userlist.setItems(employees);
+
+    private void fillEmailList() throws SQLException {
+        ResultSet result = DatabaseFunctions.getAllEmails();
+        while (result.next()) {
+
+            emails.add(result.getString("email"));
+        }
+
+        email.setItems(emails);
+    }
+
+    private void fillFirstnameList() throws SQLException {
+        ResultSet result = DatabaseFunctions.getAllFirstnames();
+        while (result.next()) {
+
+            firstNames.add(result.getString("first_name"));
+        }
+
+        firstName.setItems(firstNames);
+    }
+
+    private void fillLastnameList() throws SQLException {
+        ResultSet result = DatabaseFunctions.getAllLastnames();
+        while (result.next()) {
+
+            lastNames.add(result.getString("last_name"));
+        }
+
+        lastName.setItems(lastNames);
+    }
+
+    private void fillPhoneList() throws SQLException {
+        ResultSet result = DatabaseFunctions.getAllPhonenumbers();
+        while (result.next()) {
+
+            phones.add(result.getString("phone"));
+        }
+
+        phone.setItems(phones);
     }
 
 }

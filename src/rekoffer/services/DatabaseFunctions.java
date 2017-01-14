@@ -62,11 +62,16 @@ public class DatabaseFunctions {
     }
 
     /**
+<<<<<<< HEAD
      * Saves a lost suitcase <<<<<<< HEAD
      *
      * @param baggage CONTAINS =======
      *
      * >>>>>>> irwan_search
+=======
+     * Saves a lost suitcase
+     *
+>>>>>>> origin/Jacco_MKV
      * @param label
      * @param owner
      * @param firstName
@@ -310,7 +315,6 @@ public class DatabaseFunctions {
     }
 
     public static ResultSet getAllBaggage() throws SQLException {
-
         connect();
         preparedStatement = con.prepareStatement(getAllBaggage);
         res = preparedStatement.executeQuery();
@@ -339,12 +343,40 @@ public class DatabaseFunctions {
         return res;
     }
 
+
     public static void removeBaggage(String suitcase_label) throws SQLException {
         connect();
         preparedStatement = con.prepareStatement(removeBaggage);
         preparedStatement.setString(1, suitcase_label);
         preparedStatement.executeUpdate();
+    }
 
+    public static ResultSet getAllEmails() throws SQLException {
+        connect();
+        preparedStatement = con.prepareStatement(getAllEmails);
+        res = preparedStatement.executeQuery();
+        return res;
+    }
+
+    public static ResultSet getAllFirstnames() throws SQLException {
+        connect();
+        preparedStatement = con.prepareStatement(getAllFirstnames);
+        res = preparedStatement.executeQuery();
+        return res;
+    }
+
+    public static ResultSet getAllLastnames() throws SQLException {
+        connect();
+        preparedStatement = con.prepareStatement(getAllLastnames);
+        res = preparedStatement.executeQuery();
+        return res;
+    }
+
+    public static ResultSet getAllPhonenumbers() throws SQLException {
+        connect();
+        preparedStatement = con.prepareStatement(getAllPhonenumbers);
+        res = preparedStatement.executeQuery();
+        return res;
     }
 
 }
