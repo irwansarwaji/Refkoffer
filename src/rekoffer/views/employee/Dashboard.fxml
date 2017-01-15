@@ -15,11 +15,7 @@
             <Label fx:id="user_name" layoutX="897.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="153.0" textAlignment="RIGHT" />
       <Button layoutX="30.0" layoutY="28.0" mnemonicParsing="false" onAction="#logoutButton" prefHeight="27.0" prefWidth="82.0" text="Logout" />
       <Button layoutX="245.0" layoutY="512.0" mnemonicParsing="false" onAction="#matchAction" prefHeight="58.0" prefWidth="200.0" text="Get matches" />
-<<<<<<< HEAD
       <ListView fx:id="userlist1" layoutX="68.0" layoutY="194.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="288.0" prefWidth="989.0" />
-=======
-      <ListView fx:id="userlist1" layoutX="68.0" layoutY="194.0" prefHeight="288.0" prefWidth="989.0" />
       <Button layoutX="897.0" layoutY="512.0" mnemonicParsing="false" onAction="#removeBaggage" prefHeight="58.0" prefWidth="153.0" text="Remove Baggage" />
->>>>>>> origin/wyomi_search
    </children>
 </AnchorPane>
