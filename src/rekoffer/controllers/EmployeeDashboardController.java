@@ -55,7 +55,6 @@ public class EmployeeDashboardController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -75,7 +74,6 @@ public class EmployeeDashboardController implements Initializable {
     }
 
     private void fillList() throws SQLException {
-        
 
         //switcher.switchView("employee/RegisterLost.fxml", event);
         ResultSet rs = DatabaseFunctions.getAllBaggage();
@@ -90,7 +88,7 @@ public class EmployeeDashboardController implements Initializable {
             baggageList.add(baggage);
 
         }
-        
+
         //Nu heb ik een lijst met alle koffers uit de database!
     }
 
@@ -104,18 +102,16 @@ public class EmployeeDashboardController implements Initializable {
     @FXML
     private void searchAction(ActionEvent event) throws SQLException, IOException {
         ObservableList<Baggage> filterBaggageList = FXCollections.observableArrayList();
+        
         //Filter wordt de value waar we op zoeken (wat je intypt)
         String filter = filter_text.getText();
-
-        //Een nieuwe lijst voor een nieuwe zoekpoging
-        //filterBaggageList = new ArrayList<>();
-
+        
+        //loop nu door de lijst met koffers 
         for (Baggage bag : baggageList) {
-            //Ik loop nu door de lijst met koffers
-            //Als de naam de letters bevat van de naam die ik intype doen we wat
-            // ?i betekent dat we geen fuck geven om hoofdletters
-            // * Sterretje is een soort wildcard van sql  %LIKE%
-
+            
+            //er word gekeken of de naam de letters bevat van de naam die wordt ingetype
+            //(?i betekend dat de hooftletter worden genegeerd)
+            //(* is een soort wildcard van sql  %LIKE%)
             System.out.println(bag.getSuitcaseModel());
             if ((bag.getLastName().matches("(?i)" + filter + ".*"))
                     || bag.getFirstName().matches("(?i)" + filter + ".*")
@@ -125,26 +121,18 @@ public class EmployeeDashboardController implements Initializable {
                     || bag.getSuitcaseBrand().matches("(?i)" + filter + ".*")
                     || bag.getSuitcaseColour().matches("(?i)" + filter + ".*")) {
 
-                //Ik kijk nu alleen of de naam overeen komt, maar dat kan dus ook meer worden met een || in mijn IF functie
-                //Voeg de koffer maar toe aan de tijdelijke lijst met resultaten
+                //Voeg de koffer toe aan de tijdelijke lijst met resultaten
                 filterBaggageList.add(bag);
 
             }
 
-            //Ik vergelijk gewoon met de lijst die we al hebben ,geen nieuwe requests naar de database ! awesome!
-            //Probeer de first_name van een van de koffer velden in de database te veranderen
-            //Kijk of je 2x rick krijgt als er 2 koffers van rick zijn
         }
 
-        //Print het maar lekker uit
-        
         for (Baggage bag : filterBaggageList) {
-             userlist1.setItems(filterBaggageList);
+            userlist1.setItems(filterBaggageList);
 
-            //System.out.println(bag.getLabel()+bag.getCountry()+bag.getSuitcaseType()+bag.getSuitcaseColour()+bag.getFirstName()+bag.getLastName()+bag.getEmail()+bag.getSuitcaseModel()+bag.getSuitcaseBrand()+bag.getSuitcaseColour());
         }
 
-        //Ik kan nu de lijst met alle koffers die kloppen met de zoekterm (filterBaggageList) meegeven aan een methode die mijn table laad met een lijst 
     }
 
     @FXML
@@ -152,15 +140,14 @@ public class EmployeeDashboardController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         switcher.switchView("employee/RemoveBaggage.fxml", event);
     }
-    
+
     @FXML
     private void matchAction(ActionEvent event) throws SQLException, IOException {
-    ObservableList<Matchcase> matchesList = FXCollections.observableArrayList();
+        ObservableList<Matchcase> matchesList = FXCollections.observableArrayList();
         //Maak een neiwue lijst aan om de matches op te slaan.
         //Ik heb hier snel even een lokale class gemaakt genaamd : Matchase. Hier kan ik een match opslaan, en makkelijk zien wie koffer 1 en koffer 2 is.
         //Welke match bestat en welke de gevonden en verloren koffer registratie is. is zo makkelijk te zien.
-       //matchesList = new ArrayList<>();
-       
+        //matchesList = new ArrayList<>();
 
         //Loop door de baggagelijst die wij al hebben.
         for (Baggage bag : baggageList) {
@@ -179,12 +166,9 @@ public class EmployeeDashboardController implements Initializable {
                     //De laatste check is onnodig en kan je weghalen zodra je het begrijpt... het kijkt of de types niet hetzelfde zijn want een verloren koffer kan niet matchen met een verloren koffer.
                     //Dit wordt al voorkomen bij de IF van de eerste loop : regel 169
                     //Maar dit kan eventueel handig zijn als sommige vermissingen 2 keer geregistreerd staan.
-                    if (bag.getLabel().equalsIgnoreCase(compareBag.getLabel()) ||
-                            (bag.getSuitcaseColour().equalsIgnoreCase(compareBag.getSuitcaseColour()) 
-                            
-                            
-                            && bag.getId() != compareBag.getId() && bag.getSuitcaseType() != compareBag.getSuitcaseType()
-                            )  ) {
+                    if (bag.getLabel().equalsIgnoreCase(compareBag.getLabel())
+                            || (bag.getSuitcaseColour().equalsIgnoreCase(compareBag.getSuitcaseColour())
+                            && bag.getId() != compareBag.getId() && bag.getSuitcaseType() != compareBag.getSuitcaseType())) {
                         //Maak een match aan met de matchende registraties
                         Matchcase match = new Matchcase(bag, compareBag);
                         //Voeg hem maar toe aan de lijst
@@ -197,11 +181,11 @@ public class EmployeeDashboardController implements Initializable {
 
         for (Matchcase match : matchesList) {
             System.out.println(match.toString());
-           // userlist1.setItems(matchesList);
+            // userlist1.setItems(matchesList);
         }
-        
+
         userlist1.setItems(matchesList);
-          
+
     }
 
     void setSavedStatus(boolean savedBaggage) {
@@ -231,22 +215,22 @@ public class EmployeeDashboardController implements Initializable {
 
     @FXML
     private void refreshAction(ActionEvent event) throws SQLException, IOException {
-      
-        ObservableList<Baggage> baggageList = FXCollections.observableArrayList();
-        
-        ResultSet rs = DatabaseFunctions.getAllBaggage();
 
-        //Voor iedere rij die wij uit de database halen doe :
+        ObservableList<Baggage> baggageList = FXCollections.observableArrayList();
+
+        ResultSet rs = DatabaseFunctions.getAllBaggage();
+        
+        //Gaat stap voor stap door het lijst
         while (rs.next()) {
 
-            //Maak een baggage object aan en vul hem met mooie attributen.
+            //Maak een baggage object aan en vul hem met alle informatie die nodig is
             Baggage baggage = new Baggage(rs.getInt("id"), rs.getString("suitcase_label"), rs.getString("country"), rs.getInt("suitcase_type"), rs.getString("suitcase_color"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("email"), rs.getString("suitcase_model"), rs.getString("suitcase_brand"), rs.getString("airport_site"), rs.getString("address"), rs.getString("zip"));
 
-            //Nu ga ik deze toevoegen aan mijn lijstje
+            //voeg de informatie toe aan baggage
             baggageList.add(baggage);
 
         }
-        userlist1.setItems(baggageList);
+        userlist1.setItems(baggageList); //print de informatie uit in de userlist 
 
         //Nu heb ik een lijst met alle koffers uit de database!
     }
