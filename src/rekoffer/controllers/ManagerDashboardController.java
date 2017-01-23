@@ -27,7 +27,7 @@ import rekoffer.views.ViewSwitcher;
 /**
  * FXML Controller class
  *
- * @author Jacco
+ * @author Jacco Sierkstra
  */
 public class ManagerDashboardController implements Initializable {
 
@@ -75,7 +75,8 @@ public class ManagerDashboardController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         switcher.switchView("Login.fxml", event);
     }
-
+    
+    //switch view naar email reset scherm
     @FXML
     private void resetEmailButton(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -95,7 +96,8 @@ public class ManagerDashboardController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         switcher.switchView("manager/stats.fxml", event);
     }
-
+    
+    //Listview met emailadressen uit de database vullen
     private void fillEmailList() throws SQLException {
         ResultSet result = DatabaseFunctions.getAllEmails();
         while (result.next()) {
@@ -106,6 +108,7 @@ public class ManagerDashboardController implements Initializable {
         email.setItems(emails);
     }
 
+    //Listview met firstNames uit de database vullen
     private void fillFirstnameList() throws SQLException {
         ResultSet result = DatabaseFunctions.getAllFirstnames();
         while (result.next()) {
@@ -116,6 +119,7 @@ public class ManagerDashboardController implements Initializable {
         firstName.setItems(firstNames);
     }
 
+    //Listview met lastNames uit de database vullen
     private void fillLastnameList() throws SQLException {
         ResultSet result = DatabaseFunctions.getAllLastnames();
         while (result.next()) {
@@ -126,6 +130,7 @@ public class ManagerDashboardController implements Initializable {
         lastName.setItems(lastNames);
     }
 
+    //Listview met telefoonnummers uit de database vullen
     private void fillPhoneList() throws SQLException {
         ResultSet result = DatabaseFunctions.getAllPhonenumbers();
         while (result.next()) {

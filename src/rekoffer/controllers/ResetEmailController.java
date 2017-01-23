@@ -22,7 +22,7 @@ import rekoffer.views.ViewSwitcher;
 /**
  * FXML Controller class
  *
- * @author jacco
+ * @author Jacco Sierkstra
  */
 public class ResetEmailController implements Initializable {
 
@@ -43,6 +43,9 @@ public class ResetEmailController implements Initializable {
 
     }
 
+    
+    //Savebutton om alle ingevoerde data te checken en daarna op te slaan
+    //in de database
     @FXML
     private void saveButton(ActionEvent event) throws SQLException {
 
@@ -63,12 +66,16 @@ public class ResetEmailController implements Initializable {
         }
     }
 
+    
+    //Switch terug naar de dashboardview
     @FXML
     private void backButton(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         switcher.switchView("manager/Dashboard.fxml", event);
     }
 
+    
+    //Disconnecten van de database en teruggaan naar het loginscherm
     @FXML
     private void logoutButton(ActionEvent event) throws IOException, SQLException {
         DatabaseFunctions.disconnect();
