@@ -23,7 +23,7 @@ import rekoffer.views.ViewSwitcher;
 /**
  * FXML Controller class
  *
- * @author wyomi
+ * @author wyomi beuker
  */
 public class RemoveBaggageController implements Initializable {
 
@@ -39,16 +39,19 @@ public class RemoveBaggageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        //zet de naam en achternaam van de gebruiker boven in het scherm
         user_name.setText(Session.getSessionUser().getFirstName() + ", " + Session.getSessionUser().getLastName());
 
     }
 
+    //deze knop brengt je terug naar het employee dashboard
     @FXML
     private void backButton(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         switcher.switchView("employee/Dashboard.fxml", event);
     }
 
+    //deze knop logt je uit en brengt je terug naar het inlog scherm
     @FXML
     private void logoutButton(ActionEvent event) throws SQLException, IOException {
         DatabaseFunctions.disconnect();
@@ -56,6 +59,9 @@ public class RemoveBaggageController implements Initializable {
         switcher.switchView("Login.fxml", event);
     }
 
+    /*kijkt of de input gelijk is. zo ja word de baggage verwijderd.
+      anders word om nieuwe input gevraagt.
+    */
     @FXML
     private void removeButton(ActionEvent event) throws SQLException, IOException {
         if (Label.getText() == null || Label.getText().trim().isEmpty() || confirmLabel.getText() == null || confirmLabel.getText().trim().isEmpty()) {

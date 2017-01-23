@@ -43,7 +43,7 @@ public class EmployeeDashboardController implements Initializable {
     ViewSwitcher switcher = new ViewSwitcher();
     List<Baggage> baggageList = new ArrayList<>();
     public ObservableList<Baggage> filterBaggageList = FXCollections.observableArrayList();
-   public ObservableList<Matchcase> matchesList = FXCollections.observableArrayList();
+    public ObservableList<Matchcase> matchesList = FXCollections.observableArrayList();
 
     private TableColumn<?, ?> suitcasecolor;
 
