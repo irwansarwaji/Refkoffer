@@ -343,7 +343,7 @@ public class DatabaseFunctions {
         return res;
     }
 
-
+    
     public static void removeBaggage(String suitcase_label) throws SQLException {
         connect();
         preparedStatement = con.prepareStatement(removeBaggage);
