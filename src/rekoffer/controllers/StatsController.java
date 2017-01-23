@@ -28,29 +28,36 @@ import rekoffer.views.ViewSwitcher;
  */
 public class StatsController implements Initializable {
 
-    /**
-     * Switches view from stats to managerdashboard
-     *
-     * @param event
-     * @throws IOException
-     */
+
+    //Declaring 3 listviews for Lost, Matched and Found labels
     @FXML
     public ListView matchedView;
     public ListView lostView;
     public ListView foundView;
 
-    //View switches to manager dashboard
+    
+    /**
+     * View switches from stats view to manager dashboard
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void returnDashboard(ActionEvent event) throws IOException {
         ViewSwitcher switcher = new ViewSwitcher();
         switcher.switchView("manager/Dashboard.fxml", event);
 
     }
+    
+    //Declaring 3 Arraylists for Matched, Lost and Found labels
     public ObservableList<Label> labelsMatched = FXCollections.observableArrayList();
     public ObservableList<Label> labelsLost = FXCollections.observableArrayList();
     public ObservableList<Label> labelsFound = FXCollections.observableArrayList();
-    //Fills the matchedlabellist with all matched labels from the database
-
+    
+    
+    /**
+     * Fills the matchedlabellist with all matched labels from the database by using an SQL statement and filling the MatchedView with the results from the statement
+     * @throws SQLException 
+     */
     private void fillMatchedLabelList() throws SQLException {
         ResultSet matchedResult = DatabaseFunctions.getMatchedLabel();
         while (matchedResult.next()) {
@@ -60,8 +67,11 @@ public class StatsController implements Initializable {
 
         matchedView.setItems(labelsMatched);
     }
-    //Fills the lostlabellist with all lost labels from the database
-
+    
+    /**
+     * Fills the lostlabellist with all lost labels from the database by using an SQL statement and filling the LostView with the results from the statement
+     * @throws SQLException 
+     */
     private void fillLostLabelList() throws SQLException {
         ResultSet lostResult = DatabaseFunctions.getLostLabel();
         while (lostResult.next()) {
@@ -71,8 +81,11 @@ public class StatsController implements Initializable {
 
         lostView.setItems(labelsLost);
     }
-    //Fills the foundlabellist with all found labels from the database
-
+    
+    /**
+     * Fills the foundlabellist with all found labels from the database by using an SQL statement and filling the LostView with the results from the statement
+     * @throws SQLException 
+     */
     private void fillFoundLabelList() throws SQLException {
         ResultSet foundResult = DatabaseFunctions.getFoundLabel();
         while (foundResult.next()) {
@@ -83,6 +96,11 @@ public class StatsController implements Initializable {
         foundView.setItems(labelsFound);
     }
 
+    /**
+     * Executing code from given methods
+     * @param url
+     * @param rb 
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
