@@ -27,5 +27,10 @@
       <Text layoutX="386.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name" />
       <Text layoutX="387.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name" />
       <Text layoutX="355.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone number" />
+      <ImageView fitHeight="85.0" fitWidth="70.0" layoutX="880.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/smallLogo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

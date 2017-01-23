@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1110.0" xmlns="http://javafx.com/javafx/8" 
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="rekoffer.controllers.StatsController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1110.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rekoffer.controllers.StatsController">
     <children>
-        <Button fx:id="btnTerug" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#returnDashboard" 
-                prefHeight="50.0" prefWidth="100.0" text="Terug" />
-        <Button fx:id="btnRapport" layoutX="996.0" layoutY="14.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Rapport" />
+        <Button fx:id="btnTerug" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#returnDashboard" prefHeight="50.0" prefWidth="100.0" text="Terug" />
         <ListView fx:id="lostView" layoutX="14.0" layoutY="147.0" prefHeight="400.0" prefWidth="350.0" />
         <ListView fx:id="foundView" layoutX="380.0" layoutY="147.0" prefHeight="400.0" prefWidth="350.0" />
         <ListView fx:id="matchedView" layoutX="746.0" layoutY="147.0" prefHeight="400.0" prefWidth="350.0" />
@@ -19,5 +17,10 @@
         <Label layoutX="538.0" layoutY="114.0" text="Found" />
         <Label layoutX="904.0" layoutY="114.0" text="Matched" />
         <Label layoutX="521.0" layoutY="29.0" text="Statistieken" />
+      <ImageView fitHeight="85.0" fitWidth="70.0" layoutX="921.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/smallLogo.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

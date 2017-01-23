@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.chart.*?>
@@ -38,5 +39,10 @@
             <ListView fx:id="phone" prefHeight="200.0" prefWidth="200.0" />
          </content>
       </TitledPane>
+      <ImageView fitHeight="85.0" fitWidth="70.0" layoutX="929.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/smallLogo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

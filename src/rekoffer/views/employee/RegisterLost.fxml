@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.shape.*?>
 <?import java.lang.*?>
@@ -33,5 +34,10 @@
       <TextField fx:id="lastname_owner" layoutX="118.0" layoutY="239.0" prefHeight="25.0" prefWidth="209.0" promptText="Last name owner" />
       <TextField fx:id="country" layoutX="118.0" layoutY="276.0" prefHeight="25.0" prefWidth="209.0" promptText="Country owner" />
       <Label fx:id="errorMessage" layoutX="122.0" layoutY="136.0" />
+      <ImageView fitHeight="85.0" fitWidth="70.0" layoutX="926.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/smallLogo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
